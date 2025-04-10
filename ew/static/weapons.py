@@ -908,37 +908,7 @@ weapon_list = [
         is_tool=1,
         str_brandish=["{name} starts ramming {weapon} into the ground, whistling a little tune as they work!"]
     ),
-    EwWeapon(  # 18
-        id_weapon=ewcfg.weapon_id_autohotkey,
-        alias=[
-            "ahk",
-            "autohotkey",
-            "auto",
-            "botting",
-            "bot",
-            "auto hot key"
-        ],
-        str_crit="**Critical hit!!** By sheer dumb luck, {name_player} manages to get a good hit off on {name_target}’s {hitzone}.",
-        str_miss="**MISS!!** {name_player} is too weak to lift their pickaxe!",
-        str_equip="You equip the pickaxe.",
-        str_name="pickaxe",
-        str_weapon="a pickaxe",
-        str_weaponmaster_self="You are a rank {rank} {title} coward of the pickaxe.",
-        str_weaponmaster="They are a rank {rank} {title} coward of the pickaxe.",
-        # str_trauma_self = "There is a deep, precise indent in the crown of your skull. How embarrassing!",
-        # str_trauma = "There is a deep, precise indent in the crown of their skull. How embarrassing!",
-        str_kill=comm_cfg.pickaxekilltext,
-        str_killdescriptor="!mined",
-        str_damage="{name_target} is lightly tapped on the {hitzone}!!",
-        str_duel="**THWACK, THWACK** {name_player} and {name_target} spend some quality time together, catching up and discussing movies they recently watched or food they recently ate.",
-        str_scalp=" It reeks of dirt and poudrins. How embarrassing!",
-        fn_effect=get_normal_attack(weapon_type='tool'),
-        str_description="A highly advanced AI powered pickaxe forged from the most advanced slimecorp technology. Even staring at it you can just feel your arm start to move on its own",
-        acquisition=ewcfg.acquisition_smelting,
-        stat=ewcfg.stat_pickaxe_kills,
-        is_tool=1,
-        str_brandish=["{name} pulls out {weapon}. Almost immedietly their arm begins moving automatically."]
-    ), 
+    
     
     
     EwWeapon(  # 19
@@ -2055,6 +2025,88 @@ weapon_list = [
         classes=[ewcfg.weapon_class_ammo],
         stat=ewcfg.stat_rifle_kills,
         str_brandish=["{name} equips {weapon}. It gleans in the sun."]
+    ),
+    EwWeapon( 
+        id_weapon="gauntlet",
+        alias=[
+            "slimefinity gauntlet",
+            "gauntlet",
+        ],
+        str_crit="**Critical hit!!** {name_target} is wolloped across the {hitzone} with the infinitely hard gem of the POWER ROCK!!",
+        str_miss="{name_player} snaps their fingers... nothing happens.",
+        str_equip="you equip the slimefinity gauntlet",
+        str_name="slimefinity gauntlet",
+        str_weapon="a slimefinity gauntlet",
+        str_weaponmaster_self="You are a rank {rank} titan.",
+        str_weaponmaster="They are a rank {rank} titan.",
+        # str_trauma_self = "A single clean scar runs across the entire length of your body.",
+        # str_trauma = "A single clean scar runs across the entire length of their body.",
+        str_kill=comm_cfg.katanakilltext,
+        str_killdescriptor="pulped",
+        str_damage="{name_target} is wolloped across the {hitzone}!!",
+        str_duel="**CRACK!! THWACK!! CRACK!!** {name_player} and {name_target} duel with bamboo swords, viciously striking at head, wrist and belly.",
+        str_description="The SLIMEFINITY GAUNTLET, using the awesome power of the ENDLESS ROCKS it allows its wielder to manipulate the fabric of spacetime itself making whoever possess it functionally a GOD. On closer inspections the endless rocks embeded appear to be cheap knockoffs. At least the glove is still heavy!",
+        str_scalp="It has been beaten off.",
+        fn_effect=get_normal_attack(weapon_type='variable_damage'),
+        stat=ewcfg.stat_katana_kills,
+        str_brandish=["{name} adorns the {weapon}. The Endless Rocks embeded in the gauntlet glisten menacingly."]
+    ),
+    EwWeapon(  
+        id_weapon=ewcfg.weapon_id_autohotkey,
+        alias=[
+            "ahk",
+            "autohotkey",
+            "auto",
+            "botting",
+            "bot",
+            "auto hot key"
+        ],
+        str_crit="**Critical hit!!** By sheer dumb luck, {name_player} manages to get a good hit off on {name_target}’s {hitzone}.",
+        str_miss="**MISS!!** {name_player} is too weak to lift their pickaxe!",
+        str_equip="You equip the pickaxe.",
+        str_name="pickaxe",
+        str_weapon="a pickaxe",
+        str_weaponmaster_self="You are a rank {rank} {title} coward of the pickaxe.",
+        str_weaponmaster="They are a rank {rank} {title} coward of the pickaxe.",
+        # str_trauma_self = "There is a deep, precise indent in the crown of your skull. How embarrassing!",
+        # str_trauma = "There is a deep, precise indent in the crown of their skull. How embarrassing!",
+        str_kill=comm_cfg.pickaxekilltext,
+        str_killdescriptor="!mined",
+        str_damage="{name_target} is lightly tapped on the {hitzone}!!",
+        str_duel="**THWACK, THWACK** {name_player} and {name_target} spend some quality time together, catching up and discussing movies they recently watched or food they recently ate.",
+        str_scalp=" It reeks of dirt and poudrins. How embarrassing!",
+        fn_effect=get_normal_attack(weapon_type='tool'),
+        str_description="A highly advanced AI powered pickaxe forged from the most advanced slimecorp technology. Even staring at it you can just feel your arm start to move on its own",
+        acquisition=ewcfg.acquisition_smelting,
+        stat=ewcfg.stat_pickaxe_kills,
+        is_tool=1,
+        str_brandish=["{name} pulls out {weapon}. Almost immedietly their arm begins moving automatically."]
+    ), 
+    EwWeapon( 
+        id_weapon="beamsaber",
+        alias=[
+            "lightsaber",
+            "lightsword"
+        ],
+        str_crit="**Critical hit!!** {name_target} is cut deep!!",
+        str_miss="",
+        str_equip="You turn on the beamsaber.",
+        str_name="beamsaber",
+        str_weapon="a beamsaber",
+        str_weaponmaster_self="You are a rank {rank} newtype.",
+        str_weaponmaster="They are a rank {rank} newtype.",
+        # str_trauma_self = "A single clean scar runs across the entire length of your body.",
+        # str_trauma = "A single clean scar runs across the entire length of their body.",
+        str_kill=comm_cfg.katanakilltext,
+        str_killdescriptor="bisected",
+        str_damage="{name_target} is slashed across the {hitzone}!!",
+        str_duel="**CRACK!! THWACK!! CRACK!!** {name_player} and {name_target} duel with bamboo swords, viciously striking at head, wrist and belly.",
+        str_description="It's a beamsaber.",
+        str_scalp=" It seems to have been removed with some precision.",
+        fn_effect=get_normal_attack(weapon_type='precision'),
+        stat=ewcfg.stat_katana_kills,
+        classes=[ewcfg.weapon_class_burning],
+        str_brandish=["{name} switches on the {weapon}. *Shiiing* it glows brightly."]
     ),
 ]
 

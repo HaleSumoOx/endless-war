@@ -84,6 +84,7 @@ cmd_map = {
     ewcfg.cmd_titleframe: aptcmds.frame_title,
 
 
+
 }
 
 if ewcfg.dh_active:

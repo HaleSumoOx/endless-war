@@ -20,7 +20,8 @@ cfg.cmd_scoop:yachtcmds.scoop_ship,
 cfg.cmd_fixship:yachtcmds.repair_ship,
 cfg.cmd_lock_boat:yachtcmds.lock,
 cfg.cmd_lock_boat_alt:yachtcmds.lock,
-cfg.cmd_cut_rope:yachtcmds.cut_harpoon
+cfg.cmd_cut_rope:yachtcmds.cut_harpoon,
+cfg.cmd_seanet:yachtcmds.seanet,
 }
 
 

@@ -73,6 +73,8 @@ except:
     from ew.static import rstatic_dummy as relic_static
     from ew.cmd import debug_dummy as ewdebug
 
+from ew.utils import loop
+
 """ show player's slime score """
 
 
@@ -1105,6 +1107,7 @@ async def jump(cmd):
             await asyncio.sleep(1)
   
             # Choose a random mine
+            
             jump_poi_id = random.choice([ewcfg.poi_id_mine, ewcfg.poi_id_mine_sweeper, ewcfg.poi_id_mine_bubble, ewcfg.poi_id_tt_mines,
                                         ewcfg.poi_id_tt_mines_sweeper, ewcfg.poi_id_tt_mines_bubble, ewcfg.poi_id_cv_mines,
                                         ewcfg.poi_id_cv_mines_sweeper, ewcfg.poi_id_cv_mines_bubble])
@@ -2152,6 +2155,21 @@ async def cmd_moan(cmd):
     Harvest is not and has never been a command.
     (Krak made it a command once you fool)
 """
+
+async def autohotkey(cmd):
+    user_data = EwUser(member=cmd.message.author)
+    print(user_data.weapon)
+    if user_data.weapon == 52:
+        
+        if user_data.id_user in loop.autohotkey.keys():
+            loop.autohotkey.pop(user_data.id_user)
+            response = "Deactivating autohotkey.exe"
+        else:
+            loop.autohotkey.update({user_data.id_user:cmd})
+            response = "Activating autohotkey.exe"
+    else:
+        response = "You need to equip a Auto Hot Key to bot in Endless War"    
+    await fe_utils.send_response(response, cmd)
 
 
 async def harvest(cmd):

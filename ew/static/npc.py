@@ -787,6 +787,60 @@ EwNpc(
     is_threat=False
 ),
 
+EwNpc(
+    id_npc = "unhumbljuvie",
+    active = True,
+    str_name = "Unhumble Juve",
+    description = "A decidely unhumble juvenile delinquent.",
+    poi_list = [poi_static.capturable_districts],
+    dialogue = {"talk":["Heh. Jealous of my slime?", "Move along peasant.", "Looking at my slime? Heh. You can't have any."],
+                "loop":["I have so much slime right now", "Yeah, I got slime.","Hehe. Churls."],
+                "hit":["What?!? Slime save me!!!", "Help me!!"],
+                "die":["How..? I had so much... slime... {}".format(ewcfg.emote_slimeskull)]
+                },
+    func_ai = npcutils.chatty_npc_action,
+    image_profile = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/slimecorpbot.png",
+    defaultslime = 1000000,
+    defaultlevel = 66,
+    rarity=1,
+    is_threat=True,
+    rewards = [
+
+        {
+        ewcfg.item_id_slimepoudrin: [100, 1, 1],
+        ewcfg.item_id_slimepoudrin: [20, 1, 5],
+
+        }
+    ],
+),
+
+EwNpc(
+    id_npc = "lostjuvie",
+    active = True,
+    str_name = "Lost Juve",
+    description = "A juvie who appears to have taken a wrong turn.",
+    #Actual location will be the outer islands
+    poi_list = [poi_static.capturable_districts.append(ewcfg.poi_id_rowdyroughhouse)],
+    dialogue = {"talk":[""],
+                "loop":["I think I recognize... no that's a different rock.", "The sun sets in the north... right?"],
+                "hit":[""],
+                "die":["Critical damage taken... {}".format(ewcfg.emote_slimeskull), "Directives... cannot be... completed. {}".format(ewcfg.emote_slimeskull)]
+                },
+    func_ai = npcutils.chatty_npc_action,
+    image_profile = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/slimecorpbot.png",
+    defaultslime = 15000000,
+    defaultlevel = 66,
+    is_threat=True,
+    rewards = [
+
+        {
+        ewcfg.item_id_slimepoudrin: [100, 1, 1],
+        ewcfg.item_id_slimepoudrin: [20, 1, 5],
+        ewcfg.item_id_slimecorpcpu: [50,1,1],
+
+        }
+    ],
+),
 
 EwNpc(
     id_npc = "robynbanks",
@@ -853,8 +907,8 @@ EwNpc(
                 "loop":["""🚨 THIS IS THE POLICE 🚨\n
 🚔 ✋🏿 HANDS UP 🤚🏿 🚔\n
 🔫 YOU ARE ALL UNDER ARREST FOR ILLEGAL POSSESSION OF SLIME AND MULTIPLE OTHER CHARGES 🔫\n
-🚨
-https://discord.com/channels/431237299137675295/431237299137675297/436404634131628032
+🚨 
+()https://discord.com/channels/431237299137675295/431237299137675297/436404634131628032                     
 """],
                 "hit":["🚔 ✋🏿 HANDS UP 🤚🏿 🚔"],
                 "die":["🚨 THIS IS THE... *cough cough splurt* POLICE 🚨"],
@@ -898,13 +952,36 @@ EwNpc(
 ),
 
 
+EwNpc(
+    id_npc = "slimermaid",
+    active = True,
+    str_name = "Slimermaid",
+    description = "HOLY FUCKING SHIT IS THAT **THE** SLIMERMAID?? AS I LIVE AND BR- oh no wait its just a shitty cosplayer.",
+    poi_list = ["shagrocks"], 
+    dialogue = {
+                "talk":["Have you seen my mojo?"],
+                "loop":["I boogie with my feet then I boogie with my hands."],
+                "hit":["Killing me? You must be mistaken because it's your slime that I will be taking.", "*Slime Wick instantly builds a staircase to build limit.*"],
+                "die":["I lost my... mojo *dies*"],
+                },
+    func_ai = npcutils.generic_npc_action,
+    image_profile="https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/slimestinpowers.png",
+    defaultslime = 1000000,
+    defaultlevel = 69,
+    rarity=3,
+
+    attacktype = ewcfg.weapon_id_scar,
+    starting_statuses=[ewcfg.status_enemy_barren_id]
+),
+
+
 #Athena
 EwNpc(
     id_npc = "slimewick",
     active = True,
     str_name = "Slime Wick",
     description = "Your shits wrecked.",
-    poi_list = poi_static.battle_royale_island,
+    poi_list = poi_static.athena,
     dialogue = {"loop":["I boogie with my feet then I boogie with my hands."],
                 "hit":["Killing me? You must be mistaken because it's your slime that I will be taking.", "*Slime Wick instantly builds a staircase to build limit.*"],
                 "die":["I'm going back... to the lobby. *dies*", "I guess this is one victory... I couldn't royale. *dies*"],
@@ -915,6 +992,7 @@ EwNpc(
     rarity=3,
     is_threat=True,
     attacktype = ewcfg.weapon_id_scar,
+    image_profile="https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/slimewick.png",
     rewards = [
     {
      ewcfg.weapon_id_scar:[100, 1, 1] # 50 or 20%
@@ -922,6 +1000,179 @@ EwNpc(
     # Only attacks players with at least 20% of his slime
     condition = lambda user_data, enemy_data: True if user_data.slimes > enemy_data.get_slimes() *0.20 else False
 ),
+
+EwNpc(
+    id_npc = "slimetitan",
+    active = True,
+    str_name = "Slime Soaked Titan",
+    description = "A towering 9 foot tall humanoid, hell bent on killing half of the lobby.",
+    poi_list = poi_static.athena,
+    dialogue = {"loop":["I boogie with my feet then I boogie with my hands."],
+                "hit":["Killing me? You must be mistaken because it's your slime that I will be taking.", "*Slime Wick instantly builds a staircase to build limit.*"],
+                "die":["I'm going back... to the lobby. *dies*", "I guess this is one victory... I couldn't royale. *dies*"],
+                },
+    func_ai = npcutils.condition_hostile_action,
+    defaultslime = 5000000,
+    defaultlevel = 43,
+    is_threat=True,
+    attacktype = ewcfg.weapon_id_scar,
+    image_profile="https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/slimetitan.png",
+    rewards = [
+    {
+     "gauntlet" :[100, 1, 1] # 50 or 20%
+    }],
+    # Only attacks players with at least 20% of his slime
+    condition = lambda user_data, enemy_data: True if user_data.slimes > enemy_data.get_slimes() *0.20 else False
+),
+
+EwNpc(
+    id_npc = "actualmiku",
+    active = True,
+    str_name = "Actual Miku",
+    description = "Actual Hatsune Miku. She has a gun.",
+    poi_list = poi_static.athena,
+    dialogue = {"loop":["I boogie with my feet then I boogie with my hands."],
+                "hit":["Killing me? You must be mistaken because it's your slime that I will be taking.", "*Slime Wick instantly builds a staircase to build limit.*"],
+                "die":["I'm going back... to the lobby. *dies*", "I guess this is one victory... I couldn't royale. *dies*"],
+                },
+    func_ai = npcutils.condition_hostile_action,
+    defaultslime = 500000,
+    defaultlevel = 43,
+    is_threat=True,
+    attacktype = ewcfg.weapon_id_scar,
+    image_profile="https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/actualmiku.png",
+    rewards = [
+    {
+     "gauntlet" :[100, 1, 1] # 50 or 20%
+    }],
+    # Only attacks players with at least 20% of his slime
+    condition = lambda user_data, enemy_data: True if user_data.slimes > enemy_data.get_slimes() *0.20 else False
+),
+
+
+
+
+#Pirates
+
+EwNpc(
+    id_npc = "pirate",
+    active = True,
+    str_name = "Pirate",
+    description = "A pirate",
+    #Actual location will be the outer islands
+    poi_list = [poi_static.capturable_districts.append(ewcfg.poi_id_rowdyroughhouse)],
+    dialogue = {"talk":["Greetings citizen.", "Follow he who turns the wheels.", "I am unit *bzzz-*, please proceed.", "Move along."],
+                "loop":["Scanning... scanning... scanning...", "Preparing to sample...", "Insufficient data...", "Signal Recieved!", "*chirps*", "*beeps*"],
+                "rareloop":["Backing up blackbox data to slimecorp.net"],
+                "hit":["Hostilities detected, preparing counteroffense..", "Damage recieved, counterattacking."],
+                "die":["Critical damage taken... {}".format(ewcfg.emote_slimeskull), "Directives... cannot be... completed. {}".format(ewcfg.emote_slimeskull)]
+                },
+    func_ai = npcutils.generic_npc_action,
+    image_profile = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/slimecorpbot.png",
+    defaultslime = 15000000,
+    defaultlevel = 66,
+    is_threat=True,
+    rewards = [
+
+        {
+        ewcfg.item_id_slimepoudrin: [100, 1, 1],
+        "treasuremap": [20,1,1],
+        "treasurechest": [100,1,1],
+
+        }
+    ],
+),
+# Copy the code that spawns police officers when attacking a guy to spawn pirates when attacking a pirate captain
+EwNpc(
+    id_npc = "piratecaptain",
+    active = True,
+    str_name = "Pirate Captain",
+    description = "A wandering slimecorp bot, perhaps a relic from before the fall of Slimecorp, still surveying the lands beyond the city. Don't be fooled by its designation, in order to stop gangsters smashing them to pieces to salvage their proprietary Slimecorp CPUs they are as equipped as any good war machine would be.",
+    #Actual location will be the outer islands
+    poi_list = [poi_static.capturable_districts.append(ewcfg.poi_id_rowdyroughhouse)],
+    dialogue = {"talk":["Greetings citizen.", "Follow he who turns the wheels.", "I am unit *bzzz-*, please proceed.", "Move along."],
+                "loop":["Scanning... scanning... scanning...", "Preparing to sample...", "Insufficient data...", "Signal Recieved!", "*chirps*", "*beeps*"],
+                "rareloop":["Backing up blackbox data to slimecorp.net"],
+                "hit":["Hostilities detected, preparing counteroffense..", "Damage recieved, counterattacking."],
+                "die":["Critical damage taken... {}".format(ewcfg.emote_slimeskull), "Directives... cannot be... completed. {}".format(ewcfg.emote_slimeskull)]
+                },
+    func_ai = npcutils.generic_npc_action,
+    image_profile = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/slimecorpbot.png",
+    defaultslime = 15000000,
+    defaultlevel = 66,
+    is_threat=True,
+    rewards = [
+
+        {
+        "treasuremap": [100,1,1],
+        "treasurechest": [100,1,1],
+        ewcfg.item_id_slimepoudrin: [100, 1, 1],
+        ewcfg.item_id_slimepoudrin: [20, 1, 5],
+        }
+    ],
+),
+
+
+EwNpc(
+    id_npc = "oxymoronoxfords",
+    active = True,
+    str_name = "Oxymoron Oxfords",
+    description = "A wandering slimecorp bot, perhaps a relic from before the fall of Slimecorp, still surveying the lands beyond the city. Don't be fooled by its designation, in order to stop gangsters smashing them to pieces to salvage their proprietary Slimecorp CPUs they are as equipped as any good war machine would be.",
+    #Actual location will be the outer islands
+    poi_list = [poi_static.capturable_districts.append(ewcfg.poi_id_rowdyroughhouse)],
+    dialogue = {"talk":["Greetings citizen.", "Follow he who turns the wheels.", "I am unit *bzzz-*, please proceed.", "Move along."],
+                "loop":["Scanning... scanning... scanning...", "Preparing to sample...", "Insufficient data...", "Signal Recieved!", "*chirps*", "*beeps*"],
+                "rareloop":["Backing up blackbox data to slimecorp.net"],
+                "hit":["Hostilities detected, preparing counteroffense..", "Damage recieved, counterattacking."],
+                "die":["Critical damage taken... {}".format(ewcfg.emote_slimeskull), "Directives... cannot be... completed. {}".format(ewcfg.emote_slimeskull)]
+                },
+    func_ai = npcutils.generic_npc_action,
+    image_profile = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/slimecorpbot.png",
+    defaultslime = 15000000,
+    defaultlevel = 66,
+    is_threat=True,
+    rewards = [
+
+        {
+        ewcfg.item_id_slimepoudrin: [100, 1, 1],
+        ewcfg.item_id_slimepoudrin: [20, 1, 5],
+        "treasuremap": [100,1,1],
+
+        }
+    ],
+),
+
+EwNpc(
+    id_npc = "hypotheticalheels",
+    active = True,
+    str_name = "Hypothetical Heels",
+    description = "A wandering slimecorp bot, perhaps a relic from before the fall of Slimecorp, still surveying the lands beyond the city. Don't be fooled by its designation, in order to stop gangsters smashing them to pieces to salvage their proprietary Slimecorp CPUs they are as equipped as any good war machine would be.",
+    #Actual location will be the outer islands
+    poi_list = [poi_static.capturable_districts.append(ewcfg.poi_id_rowdyroughhouse)],
+    dialogue = {"talk":["Greetings citizen.", "Follow he who turns the wheels.", "I am unit *bzzz-*, please proceed.", "Move along."],
+                "loop":["Scanning... scanning... scanning...", "Preparing to sample...", "Insufficient data...", "Signal Recieved!", "*chirps*", "*beeps*"],
+                "rareloop":["Backing up blackbox data to slimecorp.net"],
+                "hit":["Hostilities detected, preparing counteroffense..", "Damage recieved, counterattacking."],
+                "die":["Critical damage taken... {}".format(ewcfg.emote_slimeskull), "Directives... cannot be... completed. {}".format(ewcfg.emote_slimeskull)]
+                },
+    func_ai = npcutils.generic_npc_action,
+    image_profile = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/slimecorpbot.png",
+    defaultslime = 15000000,
+    defaultlevel = 66,
+    is_threat=True,
+    rewards = [
+
+        {
+        ewcfg.item_id_slimepoudrin: [100, 1, 1],
+        ewcfg.item_id_slimepoudrin: [20, 1, 5],
+        "treasuremap": [100,1,1],
+
+        }
+    ],
+),
+
+
+
 
 #Boss npcs
 EwNpc(

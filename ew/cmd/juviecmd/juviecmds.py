@@ -26,6 +26,7 @@ from ew.utils import poi as poi_utils
 from ew.utils import rolemgr as ewrolemgr
 from ew.utils import combat as cmbt_utils
 from ew.utils import stats as ewstats
+from ew.utils import cmd
 from ew.utils.combat import EwUser
 from ew.utils.district import EwDistrict
 from ew.utils.frontend import EwResponseContainer
@@ -364,13 +365,18 @@ async def renounce(cmd):
 
 
 async def mine(cmd):
+    is_botting=False
+    if cmd.message.content.startswith("!ahk"):
+        is_botting=True
     market_data = EwMarket(id_server=cmd.message.author.guild.id)
     user_data = EwUser(member=cmd.message.author)
 
     mutations = user_data.get_mutations()
-
+                    #     fe_utils.get_channel(server=server, channel_name=ewcfg.channel_stockexchang
+                    # await fe_utils.send_message(client, sex_channel, response)
     responses = []
     resp_ctn = EwResponseContainer(client=cmd.client, id_server=cmd.guild.id)
+        
     response = ""
 
     # Kingpins can't mine.
@@ -441,6 +447,7 @@ async def mine(cmd):
             )
             
             # Check for a mine collapse
+            
             juviecmdutils.check_for_minecollapse(cmd, world_events, mine_action)
             
             # Do the calcs for !mine, return the updated mine_action container
@@ -519,6 +526,11 @@ async def mine(cmd):
             user_data.persist()
 
             # Handle Goonscape stats
+            if is_botting:
+                if random.randint(1,15)==1:
+                    response = "You continue to mine on autopilot"
+                    print(response)
+                    await fe_utils.send_response(response, cmd)
             if goonscape:
                 xp_yield = max(1, round(mine_action.slime_yield * 0.0077))
                 
@@ -704,6 +716,7 @@ async def flag(cmd):
 
 
 async def scavenge(cmd):
+
     market_data = EwMarket(id_server=cmd.message.author.guild.id)
     user_data = EwUser(member=cmd.message.author)
     mutations = user_data.get_mutations()

@@ -1462,6 +1462,9 @@ cmd_swab = cmd_prefix + 'swab'
 cmd_scoop = cmd_prefix + 'scoop'
 cmd_fixship = cmd_prefix + 'repair'
 
+#autohotkey
+
+cmd_autohotkey= cmd_prefix + 'ahk'
 
 
 offline_cmds = [

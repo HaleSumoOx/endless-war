@@ -217,6 +217,9 @@ cmd_map = {
     ewcfg.cmd_setslime: cmdcmds.set_slime,
     ewcfg.cmd_windowshop: cmdcmds.windowshop,
 
+    # Automining
+    ewcfg.cmd_autohotkey: cmdcmds.autohotkey,
+
     # Debug for world events
     ewcfg.cmd_createpoievent: cmdcmds.manual_poi_event_create,
     ewcfg.cmd_listworldevents: cmdcmds.list_worldevents,
@@ -224,6 +227,8 @@ cmd_map = {
     ewcfg.cmd_endworldevent: cmdcmds.end_worldevent,
     ewcfg.cmd_fun: cmdcmds.fun,
     ewcfg.cmd_loopdiagnostic: cmdcmds.loop_diagnostic
+
+
 }
 if ewcfg.dh_active:
     cmd_map[ewcfg.cmd_spook] = cmdcmds.spook

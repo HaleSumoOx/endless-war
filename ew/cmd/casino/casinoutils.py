@@ -13,7 +13,7 @@ def payout(winnings, bet, user_data, currency_used):
         levelup_response = user_data.change_slimes(n=winnings, source=ewcfg.source_casino)
         if levelup_response != "":
             response = "\n\n" + levelup_response
-        
+        #idk integeroverflow in here somewhere
         # SLIMERNALIA
         if ewcfg.slimernalia_active:
             lifestate_mod = 0.5

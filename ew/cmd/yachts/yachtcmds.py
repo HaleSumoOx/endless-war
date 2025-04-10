@@ -115,6 +115,7 @@ async def board_ship(cmd):
                 else:
                     selected_ship = ship
             if selected_ship is not None:
+                
                 if ewdebug.seamap[selected_ship.ycoord][selected_ship.xcoord] >= 0:
                     onland =  True
                 else:
@@ -263,6 +264,7 @@ async def avast(cmd):
                     extra_response += " You are {} to the {}.".format(stat.type_stat, attached_yacht.yacht_name)
                 elif attached_yacht.thread_id != yacht.thread_id:
                     yacht.clearStat(id_stat=stat.id_stat)
+                    
             if stat == 'embalmed':
                 extra_response += " You have embalmed your ship to prevent it from burning up."
             if stat == 'flood':
@@ -374,7 +376,7 @@ async def unboard(cmd):
                 if exit_poi != "":
                     break
             if exit_poi == "":
-                response = "The cliffs are too steep here. Looks like we can't head for land."
+                response = "There is no safe port to dock at right now. Looks like we can't head for land."
             else:
                 response = "LAND HO!"
                 move_utils.move_counter += 1
@@ -656,7 +658,7 @@ async def seanet(cmd):
         if yacht.direction != 'stop':
             response = "You can only do that when the boat's not moving."
         elif ewdebug.seamap[yacht.ycoord][yacht.xcoord] != -1:
-            response = "You bought a retirement's worth of slimecoin on a yacht, and you're gonna use it to fish on land. Phoebus christ, people like you should be euthanized."
+            response = "You spent a retirement's worth of slimecoin on a yacht, and you're gonna use it to fish on land. Phoebus christ, people like you should be euthanized."
         elif yacht.poopdeck != user_data.id_user:
             response = "If you're gonna scoop shit from the bottom of the sea, you'll need to be on the poop deck."
         elif yacht.filth_check():
@@ -672,6 +674,7 @@ async def seanet(cmd):
             sea_inv = bknd_item.inventory(id_user=inventory_id, id_server=cmd.guild.id)
             response = "You pull up the net..."
             yacht.accumulate_filth()
+            print (len(sea_inv))
             if time_now - 60 > chosen_stat.quantity and len(sea_inv) > 0:
                 received_items = random.randint(0, len(sea_inv))
                 random.shuffle(sea_inv)
@@ -686,6 +689,7 @@ async def seanet(cmd):
                     response += "and nothing's in it."
             else:
                 response = "You pull up the net...and nothing's in it."
+            yacht.clearStat(25)
         else:
             yacht.accumulate_filth()
             bait = 0

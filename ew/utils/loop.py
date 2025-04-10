@@ -51,6 +51,8 @@ from ..static import poi as poi_static
 from ..static import status as se_static
 from ..static import weapons as static_weapons
 from ..cmd.juviecmd.juviecmdutils import mine_collapse
+from ..cmd.juviecmd import juviecmds
+
 try:
     from ..utils import rutils
 except:
@@ -860,6 +862,15 @@ async def enemy_action_tick_loop(id_server):
             await cmbt_utils.enemy_perform_action(id_server) #occasionally role update lag will stop this loop,
         except Exception as e:
             ewutils.logMsg('Enemy tick loop failed. Reason:{}'.format(e))
+
+autohotkey = {}
+async def auto_hotkey_tick_loop(id_server):
+    while not ewutils.TERMINATE:
+        await asyncio.sleep(1)
+        for user in autohotkey:
+            print(user)
+            await juviecmds.mine(autohotkey.get(user))
+        pass
 
 
 async def release_timed_prisoners_and_blockparties(id_server, day):

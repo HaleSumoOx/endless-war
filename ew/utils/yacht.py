@@ -49,6 +49,7 @@ async def boat_tick(id_server, tick_count):
 
             seacursor_x = boat_obj.xcoord
             seacursor_y = boat_obj.ycoord
+            
             response = ""
             radius = 0
 

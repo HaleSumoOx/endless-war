@@ -2041,7 +2041,6 @@ EwGeneralItem(
         ],
         str_name="Slimecorp CPU",
         str_desc="A proprietary Slimecorp CPU, miraculously unscathed by whatever wreck it was scavenged from. A priceless artifact in these postlapsarian times, it could probably be used to !smelt some pretty powerful tools.",
-        # Does nothing right now, eventually I want it to smelt the Autohotkey, an automining pickaxe
     ),
     EwGeneralItem(
         id_item=ewcfg.item_id_magnuscarlslimesoul,

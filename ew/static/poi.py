@@ -3189,7 +3189,8 @@ poi_list = [
         wikipage="https://rfck.miraheze.org/wiki/Slime's_End#Slime's_End_Pier",
         is_dock=True
     ),
-    # Athena Islands
+    ## Athena Islands
+    # Outer
     EwPoi(
         id_poi="athena",
         alias=['athena'],
@@ -3206,19 +3207,83 @@ poi_list = [
         is_dock=True
     ),
     EwPoi(
+        id_poi="slimyswamp",
+        alias=['slimyswamp'],
+        str_name="Slimey Swamp",
+        str_desc="Athena Description",
+        channel="slimy-swamp",
+        role="slimyswamp",
+        coord = [[5, 43], [6, 43], [7, 43], [8, 43], [9, 43], [10, 43], [3, 44], [4, 44], [5, 44], [6, 44], [7, 44], [8, 44], [9, 44], [10, 44], [3, 45], [4, 45], [5, 45], [6, 45], [7, 45], [8, 45], [9, 45], [10, 45], [4, 46], [5, 46], [6, 46], [7, 46], [8, 46], [9, 46], [5, 47], [6, 47], [7, 47], [8, 47], [9, 47], [10, 47], [6, 48], [7, 48], [9, 48], [10, 48]],
+        permissions={'slimyswamp': ['read', 'send', 'connect']},
+        pvp=True,
+        neighbors={'lootlake': 30},
+        is_pier=False,
+        pier_type="saltwater",
+        is_dock=True
+    ),
+    EwPoi(
+        id_poi="unpleasantpark",
+        alias=['unpleasantpark'],
+        str_name="Unpleasant Park",
+        str_desc="Unpleasant Park",
+        channel="unpleasant-park",
+        role="unpleasantpark",
+        coord = [[5, 43], [6, 43], [7, 43], [8, 43], [9, 43], [10, 43], [3, 44], [4, 44], [5, 44], [6, 44], [7, 44], [8, 44], [9, 44], [10, 44], [3, 45], [4, 45], [5, 45], [6, 45], [7, 45], [8, 45], [9, 45], [10, 45], [4, 46], [5, 46], [6, 46], [7, 46], [8, 46], [9, 46], [5, 47], [6, 47], [7, 47], [8, 47], [9, 47], [10, 47], [6, 48], [7, 48], [9, 48], [10, 48]],
+        permissions={'slimyswamp': ['read', 'send', 'connect']},
+        pvp=True,
+        neighbors={'lootlake': 20,
+                   "tiltedtwintowers": 20},
+        is_pier=False,
+        pier_type="saltwater",
+        is_dock=True
+    ),
+    EwPoi(
+        id_poi="greasygrove??",
+        alias=['unpleasantpark'],
+        str_name="Unpleasant Park",
+        str_desc="Unpleasant Park",
+        channel="unpleasant-park",
+        role="unpleasantpark",
+        coord = [[5, 43], [6, 43], [7, 43], [8, 43], [9, 43], [10, 43], [3, 44], [4, 44], [5, 44], [6, 44], [7, 44], [8, 44], [9, 44], [10, 44], [3, 45], [4, 45], [5, 45], [6, 45], [7, 45], [8, 45], [9, 45], [10, 45], [4, 46], [5, 46], [6, 46], [7, 46], [8, 46], [9, 46], [5, 47], [6, 47], [7, 47], [8, 47], [9, 47], [10, 47], [6, 48], [7, 48], [9, 48], [10, 48]],
+        permissions={'slimyswamp': ['read', 'send', 'connect']},
+        pvp=True,
+        neighbors={'lootlake': 20,
+                   "tiltedtwintowers": 20},
+        is_pier=False,
+        pier_type="saltwater",
+        is_dock=True
+    ),
+    # Inner
+    EwPoi(
         id_poi="lootlake",
         alias=['lootlake'],
         str_name="Loot Lake",
-        str_desc="A large lake.",
+        str_desc="A glistening lake of pure slime and silt fed by the slime sea. All manner of oddity washes up here but fishing without protection may prove fraught.",
         channel="loot-lake",
         role="Loot Lake",
         permissions={'lootlake': ['read', 'send', 'connect']},
         pvp=True,
         is_subzone=False,
-        neighbors={'athena': 30},
+        neighbors={'athena': 30,
+                    "tiltedtwintowers":10},
         is_pier=True,
         pier_type="saltwater",
     ),
+    EwPoi(
+        id_poi="titledtwintowers",
+        alias=['tiltedtwintowers'],
+        str_name="Tilted Twin Towers",
+        str_desc="No greater symbol of mans hubris exists than the Tilted Twin Towers. A ceaseless march of destruction and creation, as soon as one pair of towers is destroyed a new pair is erected faster than the eye can see. How they do this is known only to those who have spent thousands of hours on this accursed island, pray you do not become one of them.",
+        channel="tilted-twin-towers",
+        role="Loot Lake",
+        permissions={'titledtwintowers': ['read', 'send', 'connect']},
+        pvp=True,
+        is_subzone=False,
+        neighbors={'athena': 30,
+                   "lootlake":10},
+
+    ),
+
 
     EwPoi(
         id_poi="thompsonisland",
@@ -3442,7 +3507,35 @@ EwPoi(
         is_pier=True,
         pier_type="saltwater",
         is_dock=True
-)
+),
+
+# To Be Implemented
+EwPoi(
+        id_poi="neakanm",
+        alias=['neakanm'],
+        str_name="New England aka Neo Mordor",
+        str_desc="Athena Description",
+        channel="new-england-aka-neo-mordor",
+        role="neakanm",
+        permissions={'neakanm': ['read', 'send', 'connect']},
+        pvp=True,
+        is_pier=False,
+        pier_type="saltwater",
+        is_dock=True
+    ),
+
+EwPoi(
+        id_poi="ireland",
+        alias=['ireland'],
+        str_name="Ireland",
+        str_desc="Athena Description",
+        channel="ireland",
+        role="neakirelandanm",
+        permissions={'ireland': ['read', 'send', 'connect']},
+        pvp=True,
+        is_dock=True
+    ),
+
 
 ]
 
@@ -3617,7 +3710,7 @@ landmark_pois = [
     ewcfg.poi_id_wreckington,
 ]
 
-battle_royale_island = [
+athena = [
     "athena",
     "lootlake"
 ]

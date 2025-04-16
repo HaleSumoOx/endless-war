@@ -787,10 +787,39 @@ EwNpc(
     is_threat=False
 ),
 
+
 EwNpc(
-    id_npc = "unhumbljuvie",
+    id_npc = "juvie",
     active = True,
-    str_name = "Unhumble Juve",
+    str_name = "Juvie",
+    description = "A regular juvie going on with their day, mining slime, milling crops and generally engaging in unrepentant acts of cowardness.",
+    #Juvies row and the ares around it.
+    poi_list = [poi_static.capturable_districts],
+    dialogue = {"talk":["Hi!", "Do you want some of my slime?"],
+                "loop":["I worked hard today, it felt good.", "I can't wait to get back to mining!!"],
+                "hit":["Why are you hurting me!?", "Please stop!!"],
+                "die":["No....", "But I...", "Why...?", "Mom... I'm getting cold..."]
+                },
+    func_ai = npcutils.chatty_npc_action,
+    image_profile = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/juvie.png",
+    defaultslime = 15000000,
+    defaultlevel = 66,
+    is_threat=True,
+    rewards = [
+
+        {
+        ewcfg.item_id_slimepoudrin: [100, 1, 1],
+        ewcfg.item_id_slimepoudrin: [20, 1, 5],
+
+        }
+    ],
+),
+
+
+EwNpc(
+    id_npc = "unhumblejuvie",
+    active = True,
+    str_name = "Unhumble Juvie",
     description = "A decidely unhumble juvenile delinquent.",
     poi_list = [poi_static.capturable_districts],
     dialogue = {"talk":["Heh. Jealous of my slime?", "Move along peasant.", "Looking at my slime? Heh. You can't have any."],
@@ -799,7 +828,7 @@ EwNpc(
                 "die":["How..? I had so much... slime... {}".format(ewcfg.emote_slimeskull)]
                 },
     func_ai = npcutils.chatty_npc_action,
-    image_profile = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/slimecorpbot.png",
+    image_profile = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/unhumblejuvie.png",
     defaultslime = 1000000,
     defaultlevel = 66,
     rarity=1,
@@ -817,17 +846,17 @@ EwNpc(
 EwNpc(
     id_npc = "lostjuvie",
     active = True,
-    str_name = "Lost Juve",
+    str_name = "Lost Juvie",
     description = "A juvie who appears to have taken a wrong turn.",
     #Actual location will be the outer islands
     poi_list = [poi_static.capturable_districts.append(ewcfg.poi_id_rowdyroughhouse)],
-    dialogue = {"talk":[""],
+    dialogue = {"talk":["Do you know the way to- no? okay...", "Hey can you help me find my way back?", "I'm so lost..."],
                 "loop":["I think I recognize... no that's a different rock.", "The sun sets in the north... right?"],
                 "hit":[""],
                 "die":["Critical damage taken... {}".format(ewcfg.emote_slimeskull), "Directives... cannot be... completed. {}".format(ewcfg.emote_slimeskull)]
                 },
     func_ai = npcutils.chatty_npc_action,
-    image_profile = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/slimecorpbot.png",
+    image_profile = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/lostjuvie.png",
     defaultslime = 15000000,
     defaultlevel = 66,
     is_threat=True,
@@ -836,7 +865,6 @@ EwNpc(
         {
         ewcfg.item_id_slimepoudrin: [100, 1, 1],
         ewcfg.item_id_slimepoudrin: [20, 1, 5],
-        ewcfg.item_id_slimecorpcpu: [50,1,1],
 
         }
     ],
@@ -869,34 +897,7 @@ EwNpc(
     ],
     condition= lambda user_data, enemy_data: True if (user_data.faction == 'rowdys' and user_data.life_state == ewcfg.life_state_enlisted) and user_data.slimes > enemy_data.get_slimes() *0.20 else False 
 ),
-EwNpc(
-    id_npc = "countthrashula",
-    active = True,
-    str_name = "Count Thrashula",
-    description = 'Rowdy',
-    #TODO: A more select group of districts
-    poi_list = [poi_static.capturable_districts.append(ewcfg.poi_id_rowdyroughhouse)],
-    dialogue = {"talk":["1 !thrash Ah Ah Ah"],
-                "loop":["The number of the day is !thrash."],
-                "hit":["Oh no you don't."],
-                "die":["Ah Ah Ah... {}".format(ewcfg.emote_slimeskull)]
-                },
-    func_ai = npcutils.condition_hostile_action,
-    image_profile = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/killernpctest.png",
-    defaultslime = 2000000,
-    defaultlevel = 37,
-    is_threat=True,
-    rewards = [
 
-        {
-        ewcfg.item_id_slimepoudrin: [100, 1, 1],
-        ewcfg.item_id_slimepoudrin: [50, 1, 4],
-        ewcfg.item_id_spent_pod: [100, 5,15],
-        ewcfg.item_id_cop_killer_cotton_candy_pod: [100, 1,5]
-        }
-    ],
-    condition= lambda user_data, enemy_data: True if (user_data.faction == 'rowdys' and user_data.life_state == ewcfg.life_state_enlisted) and user_data.slimes > enemy_data.get_slimes() *0.20 else False 
-),
 EwNpc(
     id_npc = "undercovercop",
     active = True,
@@ -1008,7 +1009,7 @@ EwNpc(
     description = "A towering 9 foot tall humanoid, hell bent on killing half of the lobby.",
     poi_list = poi_static.athena,
     dialogue = {"loop":["I boogie with my feet then I boogie with my hands."],
-                "hit":["Killing me? You must be mistaken because it's your slime that I will be taking.", "*Slime Wick instantly builds a staircase to build limit.*"],
+                "hit":["When I'm done half the lobby will still remember you.", "Big mistake.", "I'M FUCKING INVINCIBLE!"],
                 "die":["I'm going back... to the lobby. *dies*", "I guess this is one victory... I couldn't royale. *dies*"],
                 },
     func_ai = npcutils.condition_hostile_action,
@@ -1031,9 +1032,10 @@ EwNpc(
     str_name = "Actual Miku",
     description = "Actual Hatsune Miku. She has a gun.",
     poi_list = poi_static.athena,
-    dialogue = {"loop":["I boogie with my feet then I boogie with my hands."],
-                "hit":["Killing me? You must be mistaken because it's your slime that I will be taking.", "*Slime Wick instantly builds a staircase to build limit.*"],
-                "die":["I'm going back... to the lobby. *dies*", "I guess this is one victory... I couldn't royale. *dies*"],
+    dialogue = {"talk":["()https://media1.tenor.com/m/8th129UIiD8AAAAC/rfck-miku.gif"],
+                "loop":["()https://media1.tenor.com/m/I6Fx8VnyYqoAAAAd/rfck-miku.gif"],
+                "hit":["()https://media1.tenor.com/m/IY0azcmtupIAAAAd/miku-gun.gif"],
+                "die":["()https://media1.tenor.com/m/-4mf2crb4CAAAAAC/slime-dies.gif"],
                 },
     func_ai = npcutils.condition_hostile_action,
     defaultslime = 500000,
@@ -1076,8 +1078,9 @@ EwNpc(
 
         {
         ewcfg.item_id_slimepoudrin: [100, 1, 1],
+        "eyepatch": [20,1,1],
         "treasuremap": [20,1,1],
-        "treasurechest": [100,1,1],
+        "treasurechest": [20,1,1],
 
         }
     ],
@@ -1105,7 +1108,9 @@ EwNpc(
 
         {
         "treasuremap": [100,1,1],
-        "treasurechest": [100,1,1],
+        "treasurechest": [500,1,1],
+        "eyepatch": [50,1,1],
+
         ewcfg.item_id_slimepoudrin: [100, 1, 1],
         ewcfg.item_id_slimepoudrin: [20, 1, 5],
         }
@@ -1199,6 +1204,35 @@ EwNpc(
         ewcfg.item_id_slimepoudrin: [100, 1, 1],
         ewcfg.item_id_slimepoudrin: [20, 1, 5],
         ewcfg.item_id_slimecorpcpu: [50,1,1],
+
+        }
+    ],
+),
+
+
+EwNpc(
+    id_npc = "slimeatos",
+    active = True,
+    str_name = "Death",
+    description = "A figure draped head to toe in a ragged black cloth, though the wind may cause it to shift you find you can never get a glimpse of whoever layeth underneath. In fact the only thing you do catch a glimpse of is the glint of a large edged blade in the shape of a crescent moon.",
+    poi_list = [poi_static.capturable_districts],
+    dialogue = {"talk":["..."],
+                "loop":["..."],
+                "hit":["Then you shall be reaped."],
+                "die":["It is my time..."]
+                },
+    func_ai = npcutils.generic_npc_action,
+    image_profile = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/slimecorpbot.png",
+    defaultslime = 30000000,
+    defaultlevel = 74,
+    is_threat=True,
+    rarity=1,
+    rewards = [
+
+        {
+        ewcfg.item_id_slimepoudrin: [100, 1, 1],
+        ewcfg.item_id_slimepoudrin: [20, 1, 5],
+        ewcfg.item_id_deathssoul: [50,1,1],
 
         }
     ],

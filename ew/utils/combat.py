@@ -1658,16 +1658,18 @@ def get_target_by_ai(enemy_data, cannibalize = False, condition = None):
     # If a player's time_lastenter is less than this value, it can be attacked.
     targettimer = time_now - ewcfg.time_enemyaggro
     raidbossaggrotimer = time_now - ewcfg.time_raidbossaggro
-
+    #enemies only attack players with more than 10% of their slime
+    #target_slime = enemy_data.slimes *0.10
+    target_slime = 1000
     if not cannibalize:
         if enemy_data.ai == ewcfg.enemy_ai_defender:
             if enemy_data.id_target != -1:
                 target_data = EwUser(id_user=enemy_data.id_target, id_server=enemy_data.id_server, data_level=1)
-
+        
         elif enemy_data.ai == ewcfg.enemy_ai_attacker_a:
             users = bknd_core.execute_sql_query(
                 # "SELECT {id_user}, {life_state}, {time_lastenter} FROM users WHERE {poi} = %s AND {id_server} = %s AND {time_lastenter} < {targettimer} AND ({level} > {safe_level} OR {life_state} != {life_state_juvenile}) AND NOT ({life_state} = {life_state_corpse} OR {life_state} = {life_state_kingpin} OR {id_user} IN (SELECT {id_user} FROM status_effects WHERE id_status = '{repel_status}')) ORDER BY {time_lastenter} ASC".format(
-                "SELECT {id_user}, {life_state}, {time_lastenter} FROM users WHERE {poi} = %s AND {id_server} = %s AND {time_lastenter} < {targettimer} AND NOT ({life_state} = {life_state_corpse} OR {life_state} = {life_state_kingpin} OR {id_user} IN (SELECT {id_user} FROM status_effects WHERE id_status = '{repel_status}')) ORDER BY {time_lastenter} ASC".format(
+                "SELECT {id_user}, {life_state}, {time_lastenter} FROM users WHERE {poi} = %s AND {id_server} = %s AND {time_lastenter} < {targettimer} AND {slimes} > %s AND NOT ({life_state} = {life_state_corpse} OR {life_state} = {life_state_kingpin} OR {id_user} IN (SELECT {id_user} FROM status_effects WHERE id_status = '{repel_status}')) ORDER BY {time_lastenter} ASC".format(
                     id_user=ewcfg.col_id_user,
                     life_state=ewcfg.col_life_state,
                     time_lastenter=ewcfg.col_time_lastenter,
@@ -1682,7 +1684,8 @@ def get_target_by_ai(enemy_data, cannibalize = False, condition = None):
                     level=ewcfg.col_slimelevel
                 ), (
                     enemy_data.poi,
-                    enemy_data.id_server
+                    enemy_data.id_server,
+                    target_slime
                 ))
             if condition is not None:
                 for user in users:
@@ -1697,7 +1700,7 @@ def get_target_by_ai(enemy_data, cannibalize = False, condition = None):
         elif enemy_data.ai == ewcfg.enemy_ai_attacker_b:
             users = bknd_core.execute_sql_query(
                 # "SELECT {id_user}, {life_state}, {slimes} FROM users WHERE {poi} = %s AND {id_server} = %s AND {time_lastenter} < {targettimer} AND ({level} > {safe_level} OR {life_state} != {life_state_juvenile}) AND NOT ({life_state} = {life_state_corpse} OR {life_state} = {life_state_kingpin} OR {id_user} IN (SELECT {id_user} FROM status_effects WHERE id_status = '{repel_status}')) ORDER BY {slimes} DESC".format(
-                "SELECT {id_user}, {life_state}, {slimes} FROM users WHERE {poi} = %s AND {id_server} = %s AND {time_lastenter} < {targettimer} AND NOT ({life_state} = {life_state_corpse} OR {life_state} = {life_state_kingpin} OR {id_user} IN (SELECT {id_user} FROM status_effects WHERE id_status = '{repel_status}')) ORDER BY {slimes} DESC".format(
+                "SELECT {id_user}, {life_state}, {slimes} FROM users WHERE {poi} = %s AND {id_server} = %s AND {time_lastenter} < {targettimer} AND {slimes} > %s AND NOT ({life_state} = {life_state_corpse} OR {life_state} = {life_state_kingpin} OR {id_user} IN (SELECT {id_user} FROM status_effects WHERE id_status = '{repel_status}')) ORDER BY {slimes} DESC".format(
                     id_user=ewcfg.col_id_user,
                     life_state=ewcfg.col_life_state,
                     slimes=ewcfg.col_slimes,
@@ -1712,7 +1715,8 @@ def get_target_by_ai(enemy_data, cannibalize = False, condition = None):
                     level=ewcfg.col_slimelevel
                 ), (
                     enemy_data.poi,
-                    enemy_data.id_server
+                    enemy_data.id_server,
+                    target_slime
                 ), fetchone = True)
             if users is not None:
                 target_data = EwUser(id_user=users[0], id_server=enemy_data.id_server)

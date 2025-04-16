@@ -244,7 +244,10 @@ def score_map_from(
             for i in range(num_neighbors):
                 # Grabbing its EwPoi and travel cost from the last step
                 neigh = poi_static.id_to_poi.get(neighs[i])
-                neigh_cost = step_last.neighbors.get(neigh.id_poi)
+                try:
+                    neigh_cost = step_last.neighbors.get(neigh.id_poi)
+                except:
+                    ewutils.logMsg("Error in:"+ str(neigh))
 
                 # Skip if it has no cost
                 if neigh_cost == None:
@@ -376,7 +379,10 @@ def path_to(
             for i in range(num_neighbors):
                 # Get the neighbor EwPoi, and its cost from the final step of the path
                 neigh = poi_static.id_to_poi.get(neighs[i])
-                neigh_cost = step_last.neighbors.get(neigh.id_poi)
+                try:
+                    neigh_cost = step_last.neighbors.get(neigh.id_poi)
+                except:
+                    ewutils.logMsg("Error in:"+str(neigh))
 
                 # If it has no listed cost, skip it
                 if neigh_cost == None:

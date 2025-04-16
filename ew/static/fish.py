@@ -1217,6 +1217,10 @@ fish_list = [
         str_desc = "Legally distinct from the lamprey. Frequently cooked into a stew and served with garlic.",
         slime = None,
     ), 
+    # Loot Lake Fish
+
+
+    # Other Island Fish
 ]
 # Slimernalia exclusive fish
 if slimernalia_active == True:

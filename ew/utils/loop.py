@@ -869,8 +869,11 @@ async def auto_hotkey_tick_loop(id_server):
         await asyncio.sleep(1)
         for user in autohotkey:
             print(user)
-            await juviecmds.mine(autohotkey.get(user))
-        pass
+            if user.poi in [ewcfg.poi_id_mine,ewcfg.poi_id_tt_mines,ewcfg.poi_id_cv_mines]:
+                await juviecmds.mine(autohotkey.get(user))
+            else:
+                await juviecmds.scavenge(autohotkey.get(user))
+
 
 
 async def release_timed_prisoners_and_blockparties(id_server, day):

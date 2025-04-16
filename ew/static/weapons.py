@@ -2026,7 +2026,7 @@ weapon_list = [
         stat=ewcfg.stat_rifle_kills,
         str_brandish=["{name} equips {weapon}. It gleans in the sun."]
     ),
-    EwWeapon( 
+    EwWeapon( # 56
         id_weapon="gauntlet",
         alias=[
             "slimefinity gauntlet",
@@ -2051,7 +2051,7 @@ weapon_list = [
         stat=ewcfg.stat_katana_kills,
         str_brandish=["{name} adorns the {weapon}. The Endless Rocks embeded in the gauntlet glisten menacingly."]
     ),
-    EwWeapon(  
+    EwWeapon(  # 57
         id_weapon=ewcfg.weapon_id_autohotkey,
         alias=[
             "ahk",
@@ -2079,10 +2079,11 @@ weapon_list = [
         str_description="A highly advanced AI powered pickaxe forged from the most advanced slimecorp technology. Even staring at it you can just feel your arm start to move on its own",
         acquisition=ewcfg.acquisition_smelting,
         stat=ewcfg.stat_pickaxe_kills,
+        classes = [ewcfg.weapon_class_juvie],
         is_tool=1,
         str_brandish=["{name} pulls out {weapon}. Almost immedietly their arm begins moving automatically."]
     ), 
-    EwWeapon( 
+    EwWeapon( # 58
         id_weapon="beamsaber",
         alias=[
             "lightsaber",
@@ -2107,6 +2108,33 @@ weapon_list = [
         stat=ewcfg.stat_katana_kills,
         classes=[ewcfg.weapon_class_burning],
         str_brandish=["{name} switches on the {weapon}. *Shiiing* it glows brightly."]
+    ),
+    EwWeapon( # 59
+        id_weapon= "harvestscythe",
+        alias=[
+            "harvestscythe",
+            "deathsscythe",
+            "reaper"
+        ],
+        str_crit="**Critical hit!!** {name_target} is carved by the wicked curved blade!",
+        str_miss="**MISS!!** {name_player}'s swings wide of the target!",
+        str_equip="You equip the Harvester's Scythe.",
+        str_name="Harvester's Scythe",
+        str_weapon="the Harvester's Scythe",
+        str_weaponmaster_self="You are a rank {rank} {title} of the scythe.",
+        str_weaponmaster="They are a rank {rank} {title} of the scythe.",
+        # str_trauma_self = "You are wrapped tightly in bandages that hold your two halves together.",
+        # str_trauma = "They are wrapped tightly in bandages that hold their two halves together.",
+        str_kill=comm_cfg.scythekilltext,
+        str_killdescriptor="returned to the styx",
+        str_damage="{name_target} is cleaved through the {hitzone}!!",
+        str_duel="**WHOOSH, WHOOSH** {name_player} and {name_target} swing their blades in wide arcs, dodging one another's deadly slashes.",
+        str_description="A scythe, twice... nay thrice as large as a regular scythe. Unlike the regular farming implement it's based on this scythe has an unmistakeable aura of death and decay and pulses with PURE nega energy.",
+        str_scalp=" It's cut in two pieces.",
+        fn_effect=get_normal_attack(weapon_type='heavy'),
+        vendors=[ewcfg.weapon_class_farming],
+        stat=ewcfg.stat_scythe_kills,
+        str_brandish=["{name} takes a couple swings with {weapon}. Bell tolls for thee, motherfucker."]
     ),
 ]
 

@@ -220,6 +220,19 @@ cmd_map = {
     # Automining
     ewcfg.cmd_autohotkey: cmdcmds.autohotkey,
 
+
+    #Flavour Stuff
+    ewcfg.cmd_sheath: cmdcmds.sheath,
+    ewcfg.cmd_unsheath: cmdcmds.unsheath,
+
+    #Absolution
+
+    ewcfg.cmd_request_absolution: cmdcmds.request_absolution,
+
+
+
+
+
     # Debug for world events
     ewcfg.cmd_createpoievent: cmdcmds.manual_poi_event_create,
     ewcfg.cmd_listworldevents: cmdcmds.list_worldevents,

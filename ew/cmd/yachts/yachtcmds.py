@@ -23,6 +23,7 @@ except:
 
 
 
+
 async def rentyacht(cmd):
     user_data = EwUser(member=cmd.message.author)
     question = "You'll need {:,} SlimeCoin to set sail. Whaddya say, laddy? !accept or !refuse?".format(ewcfg.yachtprice)

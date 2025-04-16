@@ -2151,11 +2151,6 @@ async def cmd_moan(cmd):
     await fe_utils.send_response(response, cmd)
 
 
-"""
-    Harvest is not and has never been a command.
-    (Krak made it a command once you fool)
-"""
-
 async def autohotkey(cmd):
     user_data = EwUser(member=cmd.message.author)
     print(user_data.weapon)
@@ -2170,11 +2165,44 @@ async def autohotkey(cmd):
     else:
         response = "You need to equip a Auto Hot Key to bot in Endless War"    
     await fe_utils.send_response(response, cmd)
+    
+
+async def unsheath(cmd):
+    user_data = EwUser(member=cmd.message.author)
+    print (user_data.weapon)
+    if user_data.weapon == 64:
+        response = 'You unsheath your katana. Your enemies better watch out!'
+        
+    else:
+        response = "You unsheath something."
+    await fe_utils.send_response(response, cmd)
+
+async def sheath(cmd):
+    user_data = EwUser(member=cmd.message.author)
+    if user_data.weapon == 64:
+        response = 'You sheath your katana. Heh, looks like your enemies got lucky.'
+        
+    else:
+        response = "You sheath something."
+    await fe_utils.send_response(response, cmd)
+
+
+
+"""
+    Harvest is not and has never been a command.
+    (Krak made it a command once you fool)
+    But what if....
+"""
 
 
 async def harvest(cmd):
-    response = '**HARVEST IS NOT A COMMAND YOU FUCKING IDIOT**'
+
+    if random.randint(1,1000000) == 1:
+        response = "You harvest. Simple as."
+    else:
+        response = '**HARVEST IS NOT A COMMAND YOU FUCKING IDIOT**'
     await fe_utils.send_response(response, cmd)
+    
 
 
 """
@@ -3643,6 +3671,53 @@ async def display_goonscape_stats(cmd):
     
     await fe_utils.send_response(response, cmd)
 
+async def request_absolution(cmd):
+    user_data = EwUser(member=cmd.message.author)
+
+    if user_data.poi != "lighthouse":
+        response = "The absolution you seek cannot be found here. Seek a beacon of light off the coast of NLACakaNM and you may find what you are looking for."
+        await fe_utils.send_message(cmd.client, cmd.message.channel, fe_utils.formatMessage(cmd.message.author, response))
+        return
+    name = "Absolver"
+    image = "https://rfck.app/img/npc/albertalex.png"
+    member = cmd.message.author
+    member_data = EwUser(member=member)
+    response = ""    
+    absolution_fee = 1000000
+    if not user_data.faction:
+        response = "My child, you have came all this way yet it seems you have nothing to absolve? Come into my arms, to be without sin is no way to be..."
+        return await fe_utils.talk_bubble(response=response, name = name, channel=cmd.message.channel, image=image)
+    
+    if user_data.slimes < absolution_fee:
+        response = "*Ahem* \nMy child, we do not run a charity here. Absolution is a sophisticated task requring many years of training and a phD in divination... return again when you have {:,} slime".format(absolution_fee)
+        return await fe_utils.talk_bubble(response=response, name = name, channel=cmd.message.channel, image=image)
+    
+    response = "Ah you seeketh absolution my child? Well certainly you have come to the right place. Absolution will cost {:,} slime and return you to a more furtive, juvenile, state. Should you wish to return to your old ways you will once again need a gang members permission to rejoin.".format(absolution_fee)
+    await fe_utils.talk_bubble(response=response, name = name, channel=cmd.message.channel, image=image)
+    question = "Do you !accept or !refuse?"
+    accepted = await fe_utils.prompt(cmd=cmd, target = cmd.message.author, question = question, wait_time = 30, accept_command = 'accept', decline_command = 'refuse', checktarget = False)
+    user_data = EwUser(member=cmd.message.author)
+    if accepted:
+        member_data.change_slimes(n=-absolution_fee, source=ewcfg.source_spending)
+        member_data.unban(faction=user_data.faction)
+
+
+        faction_old = member_data.faction
+        member_data.faction = ""
+
+        if member_data.life_state == ewcfg.life_state_enlisted:
+            member_data.life_state = ewcfg.life_state_juvenile
+            member_data.weapon = -1
+            member_data.sidearm = -1
+
+            
+        response = "It is done. Your ties with the {} have been severed.".format(faction_old)
+        await fe_utils.talk_bubble(response=response, name = name, channel=cmd.message.channel, image=image)
+
+        member_data.persist()
+        await ewrolemgr.updateRoles(client=cmd.client, member=member)
+
+    
 async def award_skill_capes(cmd): #this command should be removed after its been used once. it would just duplicate all capes if used again :p
     if not cmd.message.author.guild_permissions.administrator:
         return await cmd_utils.fake_failed_command(cmd)

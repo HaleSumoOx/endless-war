@@ -30,14 +30,15 @@ import ew.utils.item as itm_utils
 #die: action when the enemy dies
 #hit: action when the enemy gets hit
 
-async def undo_capture(enemy):
-    district = ewdistrict.EwDistrict(district=enemy.poi, id_server=enemy.id_server)
-    if district.capture_points > 0 and random.randint(0, 10) == 0:
-        ewutils.logMsg(enemy.display_name + " is decapturing " +district.name + " | Capture Points:" + str(district.capture_points))
-        # Maybe at some point a message is sent to the gang bases similar to player captures.
+async def undo_capture(enemy = None):
+    id_server=int(enemy.id_server)
+    district = ewdistrict.EwDistrict(district=enemy.poi, id_server=id_server)
+    if district.capture_points > 0 and random.randint(0, 15) == 0:
+        response = str(enemy.display_name + " is decapturing " +district.str_name)            
+        await fe_utils.post_in_hideouts(id_server,response)
         district.decay_capture_points()
         district.persist()
-
+    return
 async def generic_npc_action(keyword = '', enemy = None, channel = None, npc_obj = None, item = None, user_data = None):
     if npc_obj is None:
         npc_obj = static_npc.active_npcs_map.get(enemy.enemyclass)

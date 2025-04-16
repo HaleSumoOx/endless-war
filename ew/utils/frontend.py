@@ -74,7 +74,7 @@ class EwResponseContainer:
         self.members_to_update = []
 
     def add_channel_response(self, channel, response):
-        # Try to keep channels as objects where possible. between thread, regular, and dm channels, names are spooky to rely on
+        # Try to keep channels as objects where possible. Between threads, regular, and dm channels, names are too spooky to rely on.
         if isinstance(channel, str):
             seek = get_channel(server=self.client.get_guild(int(self.id_server)), channel_name=channel)
             channel = seek if seek is not None else channel
@@ -269,7 +269,7 @@ def formatMessage(user_target, message):
 
 async def post_in_channels(id_server, message, channels = None):
     client = ewutils.get_client()
-    server = client.get_guild(id=id_server)
+    server = client.get_guild(id_server)
 
     if channels is None and server is not None:
         channels = server.channels
@@ -343,7 +343,6 @@ def find_kingpin(id_server, kingpin_role):
 """
 	Posts a message both in CK and RR.
 """
-
 
 async def post_in_hideouts(id_server, message):
     await post_in_channels(

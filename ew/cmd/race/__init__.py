@@ -25,7 +25,7 @@ cmd_map = {
     ewcfg.cmd_entomize: racecmds.entomize,
     ewcfg.cmd_confuse: racecmds.confuse,
 
-    # Fuck Shamblers
+    # Shamblers #1!!!
     ewcfg.cmd_shamble: racecmds.shamble,
 
     ewcfg.cmd_netrun: racecmds.netrun,

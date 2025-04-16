@@ -414,6 +414,24 @@ smelting_recipe_list = [
         },
         products=[ewcfg.weapon_id_autohotkey]
     ),
+    
+    EwSmeltingRecipe(
+        id_recipe="ahk",
+        str_name="Harvester Scythe",
+        alias=[
+            "harvest",
+            "deaths scythe",
+            "scythe",
+        ],
+        ingredients={
+            ewcfg.item_id_deathssoul: 1,
+            ewcfg.weapon_id_scythe: 1,
+            ewcfg.item_id_slimepoudrin:10,
+            ewcfg.item_id_ironingot: 5,
+            ewcfg.item_id_stick: 5,
+        },
+        products=["harvestscythe"]
+    ), 
         EwSmeltingRecipe(
         id_recipe="monowhip",
         str_name="a monofilamentwhip",

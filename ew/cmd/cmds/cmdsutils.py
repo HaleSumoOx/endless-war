@@ -87,6 +87,8 @@ def location_commands(cmd, search_poi = None):
         response = init_resp = "**{}**".format(poi_obj.str_name)
 
         # Unique-ish commands first
+        if poi == "lighthouse":
+            response += "\n" + ewcfg.cmd_request_absolution
         if poi in [ewcfg.poi_id_nlacu, ewcfg.poi_id_neomilwaukeestate]:
             response += "\n" + ewcfg.universities_commands
         if ewcfg.district_unique_commands.get(poi) is not None:

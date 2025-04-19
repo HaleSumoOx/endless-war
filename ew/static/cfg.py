@@ -3,7 +3,7 @@ import random
 # Global configuration options.
 
 
-version = "v4.234 SEASON 4 ACT 2 - Killing Slimernalia"
+version = "v4.234 SEASON 4 ACT 2 - Le bote"
 
 
 
@@ -1599,7 +1599,7 @@ global_damage_multiplier_dt = {}
 
 
 # inebriation
-inebriation_max = 20
+inebriation_max = 100
 inebriation_pertick = 2
 
 # max item amounts
@@ -2844,6 +2844,7 @@ stat_machete_kills = 'machete_kills'
 stat_boomerang_kills = 'boomerang_kills'
 stat_basket_kills = 'basket_kills'
 stat_scar_kills = 'scar_kills'
+stat_cutlass_kills = 'cutlass_kills'
 
 private_stat_string = "'gambit', 'credence', 'credenceused'" #added into a query elsewhere to prevent stats from showing in certain places
 
@@ -2953,6 +2954,8 @@ vendor_breakroom = "The Breakroom"  # Security officers can order items here for
 vendor_rpcity = "RP City"  # Double halloween costume store
 vendor_coalitionsurplus = "Coalition Surplus" # Glocksbury vendor
 vendor_gumballmachine = "Gumball Machine"
+#Island Vendors
+vendor_threesmile = 'Three Smile Island' 
 
 vendor_passive_chat_wait_time = 60 * 60 * 12  # 12 hours
 
@@ -4266,6 +4269,7 @@ weapon_response_group_map = {
     "Small-Game": ["Knives", "Bow", "Monofilament Whip",],
     "Variable-Damage": ["Bat", "Brass Knuckles", "Bass Guitar", "Skateboard", "Machete",],
     "Heavy": ["Shotgun", "Broadsword", "Scythe", "Chainsaw", "Sledgehammer",],
+    "Ultra-Heavy" :["Harpoon"],
     "Defensive": ["Umbrella",],
     "Multiple-Hit": ["Assault Rifle", "SMG", "Nunchucks", "Boomerang",],
     "Incendiary": ["Molotov", "Dragon Claw",],
@@ -4273,7 +4277,7 @@ weapon_response_group_map = {
     "Tool": ["Pickaxe", "Fishing Rod", "Hoe", "Pitchfork", "Shovel", "Diamond Pickaxe",],
     "Unique": ["Minigun", "Garrote", "Eldritch Staff", "Slimeoid Whistle", "Missile Launcher",],
     "Deprecated": ["Spray Can", "Paint Gun", "Paint Roller", "Paintbrush", "Watercolors", "Thinner Bomb", "Roomba", "Slimering Can",],
-    # "Other": ["Fingernails", "Laywaster", "Harpoon", "Model397", "Fists"] # Probs shouldn't be visible
+    # "Other": ["Fingernails", "Laywaster", "", "Model397", "Fists"] # Probs shouldn't be visible
 }
 
 mutation_descriptions = {

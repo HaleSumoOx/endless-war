@@ -23,6 +23,7 @@ from ew.backend.status import EwEnemyStatusEffect
 import ew.utils.core as ewutils
 import ew.utils.item as itm_utils
 
+
 #from ew.utils.combat import EwEnemy
 #move: enemy move action
 #talk: action on a !talk
@@ -33,11 +34,13 @@ import ew.utils.item as itm_utils
 async def undo_capture(enemy = None):
     id_server=int(enemy.id_server)
     district = ewdistrict.EwDistrict(district=enemy.poi, id_server=id_server)
+    districtName = poi_static.id_to_poi[enemy.poi].str_name
     if district.capture_points > 0 and random.randint(0, 15) == 0:
-        response = str(enemy.display_name + " is decapturing " +district.str_name)            
+        response = str(enemy.display_name + " is decapturing " +districtName)         
         await fe_utils.post_in_hideouts(id_server,response)
         district.decay_capture_points()
         district.persist()
+        #return False
     return
 async def generic_npc_action(keyword = '', enemy = None, channel = None, npc_obj = None, item = None, user_data = None):
     if npc_obj is None:
@@ -90,6 +93,17 @@ async def police_chief_npc_action(keyword = '', enemy = None, channel = None, it
     else:
         return await police_npc_action(keyword = keyword, enemy = enemy, channel = channel, item=item)
 
+
+async def captain_npc_action(keyword = '', enemy = None, channel = None, item = None, user_data = None): #similar to the generic npc, but with loopable dialogue
+    npc_obj = static_npc.active_npcs_map.get(enemy.enemyclass)
+    if keyword == 'act':
+        return await conditional_act(channel=channel, npc_obj=npc_obj, enemy=enemy)
+    elif keyword == 'die':
+        return await captain_die(channel=channel, npc_obj=npc_obj, keyword_override='die', enemy = enemy)
+    elif keyword == 'move':
+        return await generic_move(enemy=enemy, npc_obj=npc_obj, move_override=30)
+    else:
+        return await generic_npc_action(keyword=keyword, enemy=enemy, channel=channel, item=item)
 
 async def condition_hostile_action (keyword = '', enemy = None, channel = None, item = None, user_data = None):
     npc_obj = static_npc.active_npcs_map.get(enemy.enemyclass)
@@ -396,6 +410,32 @@ async def chief_die(channel, npc_obj, keyword_override = 'die', enemy = None):
     response = "Oh shit, cop car! There's {} of those bitches in there!\n\nWait...Oh no...".format(numcops + 3)
     await fe_utils.send_message(None, channel, response)
 
+async def captain_die(channel, npc_obj, keyword_override = 'die', enemy = None):
+    potential_dialogue = npc_obj.dialogue.get(keyword_override)
+    drop_held_items(enemy=enemy)
+    response = random.choice(potential_dialogue)
+    name = "{}{}{}".format('**__', npc_obj.str_name.upper(), '__**')
+    await fe_utils.send_message(None, channel, "{} is dead!".format(npc_obj.str_name))
+    if response is not None:
+        await fe_utils.talk_bubble(response=response, name=name, image=npc_obj.image_profile, channel=channel)
+
+    ewhunting.spawn_enemy(id_server=enemy.id_server, pre_chosen_type='npc', pre_chosen_poi=enemy.poi, pre_chosen_npc='piratecaptainghost')
+    response = "The captain has risen has a ghostly abomination!!!"
+    await fe_utils.send_message(None, channel, response)
+    timewait = 10
+    await asyncio.sleep(timewait)
+    
+    pirates = 2
+    
+    ewhunting.spawn_enemy(id_server=enemy.id_server, pre_chosen_type='npc', pre_chosen_poi=enemy.poi, pre_chosen_npc='deckhandjuvie')
+    for x in range(pirates):
+        ewhunting.spawn_enemy(id_server=enemy.id_server, pre_chosen_type='npc', pre_chosen_poi=enemy.poi, pre_chosen_npc='pirate')
+
+
+    response = "**YARR** The captains crew has come to avenge him and his corpse appears to be stirring! Their's {} coming for you!".format(pirates)
+    return await fe_utils.send_message(None, channel, response)
+
+
 
 async def ratqueen_act(channel=None, npc_obj=None, enemy=None):
     district = ewdistrict.EwDistrict(district=enemy.poi, id_server=enemy.id_server)
@@ -411,6 +451,10 @@ def drop_held_items(enemy):
     items_to_drop = []
 
     for item in items_list:
+        print (item)
+        if item.str_name == "Treasure Map":
+            item_props = itm_utils.gen_item_props(item)
+            item_props['item_desc'] = item_props['item_desc'].format(mapping = yacht_utils.draw_item_map(enemy.id_server))
         items_to_drop.append(item.get('id_item'))
     if len(items_to_drop) > 0:
         bknd_item.give_item_multi(id_list=items_to_drop, destination=enemy.poi)

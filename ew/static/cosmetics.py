@@ -116,6 +116,19 @@ cosmetic_items_list = [
         acquisition = "smelting",
         price = 50000,
         vendors = ['bazaar'],
+        
+    ),
+    EwCosmeticItem(
+        id_cosmetic = "rag",
+        str_name = "Do-rag",
+        str_desc = "A cloth do-rag, worn around the head. For gangsters, pirates and pirate gangsters.",
+        rarity = "Plebeian",
+        durability = 2500000,
+        style = "cool",
+        freshness = 5,
+        price = 50000,
+        vendors = ['bazaar'],
+        is_hat = True,
     ),
     EwCosmeticItem(
         id_cosmetic = "bulletnecklace",
@@ -2593,6 +2606,17 @@ EwCosmeticItem(
         durability = 250000,
         style = "cute",
         freshness = 3
+    ),
+    EwCosmeticItem(
+        id_cosmetic = "hazmatsuit",
+        str_name = "Hazmat Suit",
+        str_desc = "A bright yellow hazmat suit with a pair of black rubber gloves and boots. Protects your entire body against the affects of radiation... or would if it had any filter installed in the ventilator. All this is good for is scaring unsuspecting juvies.",
+        rarity = "plebeian",
+        durability = 2500000,
+        style = "evil",
+        freshness = 8,
+        price = 2500000,
+        vendors = ['Oppenheimer and Sons'],
     ),
 ]
 

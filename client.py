@@ -301,6 +301,7 @@ async def on_ready():
         asyncio.ensure_future(loop_utils.decrease_food_multiplier())
         asyncio.ensure_future(loop_utils.boat_tick_loop(id_server=server.id))
         asyncio.ensure_future(loop_utils.auto_hotkey_tick_loop(id_server=server.id))
+        asyncio.ensure_future(loop_utils.drunk_effects(id_server=server.id))
         # SWILLDERMUK
         if ewcfg.swilldermuk_active:
             asyncio.ensure_future(loop_utils.spawn_prank_items_tick_loop(id_server = server.id))

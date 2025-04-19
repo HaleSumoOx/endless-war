@@ -8,7 +8,6 @@ from . import frontend as fe_utils
 from . import poi as poi_utils
 from .frontend import EwResponseContainer
 from ..backend import core as bknd_core
-from ..backend import yacht as bknd_yacht
 from ..backend.district import EwDistrictBase
 from ..static import cfg as ewcfg
 from ..static import poi as poi_static

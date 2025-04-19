@@ -111,7 +111,7 @@ def spawn_enemy(
             threat_level = "micro"
         elif threat_level_choice <= 720:
             threat_level = "monstrous"
-        elif threat_level_choice <= 900:
+        elif threat_level_choice <= 950:
             threat_level = "mega"
         else:
             threat_level = "giga"

@@ -4,6 +4,7 @@ import os
 from . import cfg as ewcfg
 from ..model.food import EwFood
 from ew.static.cfg import slimernalia_active
+preserved = "\n You feel a warmth emanating from this dish and it kind of makes you tingle. Whenever you try to post a picture of it on slime twitter to farm free resplats your gellphone camera always ends up with dead pixels... odd."
 food_list = [
     EwFood(
         id_food = "slimentonic",
@@ -3352,6 +3353,43 @@ food_list = [
         str_desc = "It's a twist cap bottle of slime, plus whatever else that could be poured into it. On one of the sides, it has a gloss marking of ENDLESS WAR and the text within \"product of NEW LOS ANGELES CITY aka NEO-MILWAUKEE\". Should you really, and I mean... **really** blindly trust consumerism?",
         time_expir = 7212022, #Date of RFCKcon '22 where Ben gave the bottles out
         acquisition = ewcfg.acquisition_smelting,
+    ),
+    # Island food
+        EwFood(
+        id_food = "oysterburger",
+        alias = ['oyster', 'oysterburger', 'ob', 'burger'],
+        recover_hunger = 720,
+        price = 8000,
+        str_name = "a burger made from oysters",
+        vendors = ['Three Smile Island'],
+        str_eat = "You brace yourself before opening your mouth as wide as it will go, your massater muscles straining to keep your jaw attatched to your cranium. You begin mentally counting down; 3... 2... 1... GO! You bite as hard as you can, the soft fluffy bun can barely even register as a sensation before you begin to crunch through the first layer of shells, your teeth scream out in pain, calcium meets calcium in this standoff of the millenia but you aren't one to be beaten easily, you put all the power you can into your jaw and like a wreckingball you tear through layer after layer of shell, each spilling out its slimey interior as you bite, only half of it ever making into your maw. You macerate the slurry of goo and carapace for a while before swallowing.",
+        str_desc = "A tower of fresh oysters sandwiched in between two toasted buns, a sauce with secret ingredients is slathered on each side and a slice of lettuce lay between each oyster. Kind of redundant really, the oysters' shells already provides ample crunch towards the burgers mouthfeel. What you thought they would be removed from their shell? Think again bucko.{}".format(preserved),
+        time_expir=100000000,
+        perishable = False
+    ),
+        EwFood(
+        id_food = "shrimpomelette",
+        alias = ['shrimpomelette', 'omelette', 'om', 'shrimp','so','omelete','eggpizza','shrimpeggpizza'],
+        recover_hunger = 600,
+        price = 7000,
+        str_name = "a shrimp omelette",
+        vendors = ['Three Smile Island'],
+        str_eat = "You bust out the silverware and begin delicately slicing off portions of the omelette, letting each bite practically melt in your mouth before going back for more. You pace yourself, knowing such a dish to be especially ephemeral but for all things the end must come. You look down at the empty plate and then around to make sure no ones watching and lick the plate clean before triumphantly smashing it on the floor.",
+        str_desc = "Beaten eggs fried with shrimp into a delicate omeltte, chopped chives and fennel fronds occupy the interior and a thin film of butter has been spread on the top.{}".format(preserved),
+        time_expir=100000000,
+        perishable = False
+    ),
+        EwFood(
+        id_food = "pepsi",
+        alias = ['pepsi'],
+        recover_hunger = 600,
+        price = 700,
+        str_name = "a can of pepsi",
+        vendors = ['Three Smile Island'],
+        str_eat = "*Click* *Pshh* You crack open the can and calmly take a sip. Ahhhh, it never gets better then this.",
+        str_desc = "A single can of Pepsi. Despite the fall of PepsiCo occuring years ago lonesome cans still wash up now and again.{}".format(preserved),
+        time_expir=100000000,
+        perishable = False
     ),
 ]
 if slimernalia_active == True:

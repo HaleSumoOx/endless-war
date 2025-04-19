@@ -148,8 +148,7 @@ async def squeeze(cmd):
 
     if cmd.mentions_count > 1:
         response = "One dehumanizing soul-clutch at a time, please."
-    elif targetmodel.life_state == ewcfg.life_state_corpse:
-        response = "Enough already. They're dead."
+    
     else:
 
         playermodel = EwPlayer(id_user=targetmodel.id_user)
@@ -183,8 +182,10 @@ async def squeeze(cmd):
 
             usermodel.time_lasthaunt = int(time.time())
             usermodel.persist()
-
-            penalty = (targetmodel.slimes * -0.25)
+            if targetmodel.life_state == ewcfg.life_state_corpse:
+                penalty = (targetmodel.slimes * 0.25)
+            else:
+                penalty = (targetmodel.slimes * -0.25)
             targetmodel.change_slimes(n=penalty, source=ewcfg.source_haunted)
             targetmodel.persist()
 

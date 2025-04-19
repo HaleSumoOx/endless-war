@@ -1601,6 +1601,7 @@ weapon_list = [
         classes=[ewcfg.weapon_class_ammo],
         stat=ewcfg.stat_harpoon_kills,
         price=1000000000,
+        vendors = ["Oppenheimer and Sons"],
         # YOU EITHER KILL 'EM OR YOU DON'T, BROTHERRRR
         clip_size=1,
         str_brandish=["{name} takes out {weapon} and racks their brain for a quote from Moby Dick. They can't think of a quote from Moby Dick."]
@@ -2083,6 +2084,30 @@ weapon_list = [
         is_tool=1,
         str_brandish=["{name} pulls out {weapon}. Almost immedietly their arm begins moving automatically."]
     ), 
+    EwWeapon(  # Does more damage when on a ship
+        id_weapon="Cutlass",
+        alias=[
+            "scimitar",
+            "pirate sword",
+        ],
+        str_crit="**Critical hit!!** {name_player} slashes {name_target} on the {hitzone}, severing an arterry",
+        str_miss="**MISS!!** {name_player} swings forwads but {name_target} deftly sidesteps",
+        str_equip="You equip the cutlass. Yarr.",
+        str_name="cutlass",
+        str_weaponmaster_self="You are a rank {rank} pirate {title} of the cutlass.",
+        str_weaponmaster="They are a rank {rank} pirate {title} of the cutlass.",
+        str_weapon="a cutlass",
+        str_kill=comm_cfg.batkilltext,
+        str_killdescriptor="cut to shreds",
+        str_damage="{name_target} is slashed across the {hitzone}!!",
+        str_duel="**Yarr!** {name_player} and {name_target} take turns parrying eachothers attacks and walking the plank.",
+        str_description="An authentic pirate cutlass, pried from the cold dead hands of a pirate.",
+        str_scalp=" It has been sliced off cleanly",
+        fn_effect=get_normal_attack(weapon_type='variable_damage'),
+        price=10000,
+        stat=ewcfg.stat_cutlass_kills,
+        str_brandish=["{name} draws the {weapon}."]
+    ),
     EwWeapon( # 58
         id_weapon="beamsaber",
         alias=[

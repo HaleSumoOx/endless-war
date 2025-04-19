@@ -3405,7 +3405,7 @@ The Lighthouse of Absolution offers exactly one service, absolution, and it come
         id_poi="threemileislandcenter",
         alias=['three mile island'],
         str_name="Three Mile Island Center",
-        str_desc="You stand in TODO: district, the northmost district of Three Mile Island. Ancient cannon batteries point outwards towards the slime sea and a lighthouse looms over the entire district, taken over by the Cult of Absolution long ago. A green haze permenantly lingers on the air and just standing here makes you feel ill.",
+        str_desc="You stand in TODO: district",
         channel="three-mile-island",
         role="three-mile-island",
 
@@ -3416,15 +3416,54 @@ The Lighthouse of Absolution offers exactly one service, absolution, and it come
         is_capturable=True,
     ),
 
-    
+        EwPoi(
+        id_poi="threemileislandsouth",
+        alias=['three mile island south'],
+        str_name="Three Mile Island south",
+        str_desc="You stand in TODO: district",
+        channel="three-mile-island",
+        role="three-mile-island",
 
+        permissions={'three-mile-island': ['read', 'send', 'connect']},
+        pvp=True,
+        property_class="B",
+        is_district=True,
+        is_capturable=True,
+    ),
+
+    EwPoi(
+        id_poi="threesmileisland",
+        alias=['three smile island'],
+        str_name="Three Smile Island",
+        str_desc="A mid range seafood restaraunt, said to be built on the ruins of an old nuclear powerplant. The food here is famous for never spoiling.",
+        channel="three-smile-island",
+        role="three-smile-island",
+        permissions={'three-smile-island': ['read', 'send', 'connect']},
+        pvp=True,
+        vendors=['Three Smile Island']
+
+    ),
+    
+        EwPoi(
+        id_poi="oppenheimerandsons",
+        alias=['Oppenheimer', 'OAS', 'oppenhimerandsons'],
+        str_name="Oppenheimer and Sons",
+        str_desc="A wholesome family store.",
+        channel="oppenheimer-and-sons",
+        role="oppenheimer-and-sons",
+        permissions={'oppenheimer-and-sons': ['read', 'send', 'connect']},
+        pvp=True,
+        vendors=['Oppenheimer and Sons']
+
+    ),
+    
 
     ## ================= ##
     EwPoi(
         id_poi="snouseisland",
         alias=['snouseisland'],
         str_name="Snouse Island",
-        str_desc="The homeland of the rare 'Snouse' which in years prior had been hunted to the point of extinction. The few that remain do so only in captivity. They aren't in captivity in here though, nothing is here. Absolutely nothing.",
+        str_desc="The homeland of the rare 'Snouse' which in years prior had been hunted to the point of extinction. The few that remain do so only in captivity. They aren't in captivity here though, nothing is here. Absolutely nothing.",
         channel="snouse-island",
         role="snouse-island",
         coord =  [[26, 32], [24, 33], [25, 33], [26, 33], [24, 34]],

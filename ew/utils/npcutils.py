@@ -34,9 +34,19 @@ import ew.utils.item as itm_utils
 async def undo_capture(enemy = None):
     id_server=int(enemy.id_server)
     district = ewdistrict.EwDistrict(district=enemy.poi, id_server=id_server)
-    districtName = poi_static.id_to_poi[enemy.poi].str_name
+    district_name = poi_static.id_to_poi[enemy.poi].str_name
+    
     if district.capture_points > 0 and random.randint(0, 15) == 0:
-        response = str(enemy.display_name + " is decapturing " +districtName)         
+        controlling_faction=district.controlling_faction
+        print (controlling_faction)
+        response = "{enemy} is decapturing {district}".format(
+                enemy=enemy.display_name,
+                district=district_name)
+        if controlling_faction:
+            response = "{enemy} is decapturing {district} from the {controllingfaction}".format(
+                enemy=enemy.display_name,
+                district=district_name,
+                controllingfaction=controlling_faction)      
         await fe_utils.post_in_hideouts(id_server,response)
         district.decay_capture_points()
         district.persist()

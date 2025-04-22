@@ -1298,6 +1298,8 @@ EwNpc(
 
         }
     ],
+
+    
 ),
 #Placeholder until the Chess in the Charcoal Park update
 EwNpc(
@@ -1324,6 +1326,7 @@ EwNpc(
     attacktype = ewcfg.weapon_id_scar,
     starting_statuses=[] #Invulnerable until beaten at chess
 ),
+
 
 ]
 

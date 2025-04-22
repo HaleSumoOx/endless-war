@@ -348,6 +348,8 @@ def wef_harpoon(ctn = None):
         aim = (random.randrange(11) + 1)
     ctn.slimes_damage = int(ctn.slimes_damage * 3)
     aim *= ctn.hit_chance_mod
+    print (ctn.hit_chance_mod)
+    print(aim)
     if aim >= 10:
         ctn.miss = False
     else:
@@ -2161,6 +2163,36 @@ weapon_list = [
         stat=ewcfg.stat_scythe_kills,
         str_brandish=["{name} takes a couple swings with {weapon}. Bell tolls for thee, motherfucker."]
     ),
+EwWeapon(  # Ultragreatsword
+        id_weapon="ugs",
+        alias=[
+            "ultragreatsword",
+        ],
+        str_crit="**Critical hit!!** {name_target}'s totally hooked!!",
+        str_miss="**You missed!!** {name_player} misses {name_target}! FUCK!!",
+        str_equip="You equip the harpoon gun.",
+        str_name="harpoon gun",
+        str_weapon="a harpoon gun",
+        str_weaponmaster_self="You are a rank {rank} salty {title} of the harpoon gun.",
+        str_weaponmaster="They are a rank {rank} salty {title} of the harpoon gun.",
+        str_kill=["**YARRR!!** {name_player} fires a harpoon right into {name_target}! {name_target} is dragged up on deck, vanquished. {emote_skull}"],
+        str_killdescriptor="harpooned",
+        str_damage="{name_player} harpoons {name_target}’s {hitzone}!!",
+        str_duel="**...** {name_player} and {name_target} dock their vessels next to one another, locked in a stern gaze. Suddenly, harpoons erupt from either vessel, smashing through timber and flesh alike.",
+        str_description="It's a harpoon gun, seemingly ripped right from the deck of a whaling vessel. You're going to need both hands free to wield this thing properly, that means no sidearms, you shmuck!",
+        str_reload="...aaaaand reloaded! The harpoon is ready to fire again!",
+        str_reload_warning="{name_player}’s is too exhausted to swing again!!",
+        str_scalp="The scalp is drenched in a salty brine.",
+        fn_effect=wef_harpoon,
+        classes=[ewcfg.weapon_class_ammo],
+        stat=ewcfg.stat_harpoon_kills,
+        price=1000000000,
+        vendors = ["Oppenheimer and Sons"],
+        # YOU EITHER KILL 'EM OR YOU DON'T, BROTHERRRR
+        clip_size=1,
+        str_brandish=["{name} takes out {weapon} and racks their brain for a quote from Moby Dick. They can't think of a quote from Moby Dick."]
+    ),
+
 ]
 
 for weapon in weapon_list:

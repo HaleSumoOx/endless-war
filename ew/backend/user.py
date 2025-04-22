@@ -246,6 +246,7 @@ class EwUserBase:
                     self.fashion_seed = random.randrange(500000) if result[46] == 0 else result[46]
 
                 else:
+                    #Fresh spawn
                     self.poi = ewcfg.poi_id_downtown
                     self.life_state = ewcfg.life_state_juvenile
                     # Create a new database entry if the object is missing.

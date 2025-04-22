@@ -2618,6 +2618,18 @@ EwCosmeticItem(
         price = 2500000,
         vendors = ['Oppenheimer and Sons'],
     ),
+    EwCosmeticItem(
+        id_cosmetic = "jdcuniform",
+        str_name = "JDC Uniform",
+        str_desc = "A dirty grey jumpsuit given to all innmates of the Juvenile Detention Center. The words 'JDC' are stamped on the back along with an id number.",
+        rarity = "Plebeian",
+        durability = 2500000,
+        size = 1,
+        style = "cute",
+        freshness = 1,
+        price = 50,
+        vendors = ['bazaar'],
+    ),
 ]
 
 

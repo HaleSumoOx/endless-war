@@ -1568,7 +1568,7 @@ poi_list = [
     EwPoi(
         id_poi="copkilltownsubwaystation",
         alias=['copkilltownsubway', 'copkilltownsub', 'copkilltownstation', 'copkillsubwaystation', 'copkillsubway',
-               'copkillsub', 'copkillstation', 'cksubwaystation', 'cksubway', 'cksub', 'ckstation', 'copkills', 'cks'],
+               'copkillsub', 'copkillstation', 'cksubwaystation', 'cksubway', 'cksub', 'ckstation', 'copkills', 'cks','ckss'],
         str_name="The Cop Killtown Subway Station",
         str_desc="This sparsely decorated terminal replicates the feeling of riding on a Red Line train, otherwise known as inducing suicidal thoughts. Dim lighting barely illuminates the moldy, stained terminal walls. Inbound and outbound trains arrive and departure one after another with unreal temporal precision. You're not sure if you've ever seen a Red Line train be late. Still doesn't make you like being on one though.\n\nExits into Cop Killtown.",
         channel="cop-killtown-subway-station",

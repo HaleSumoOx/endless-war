@@ -811,6 +811,7 @@ cmd_setstockvalue = cmd_prefix + 'setstockvalue'
 cmd_setstockshares = cmd_prefix + 'setstockshares'
 cmd_negapool = cmd_prefix + 'negapool'
 cmd_negaslime = cmd_prefix + 'negaslime'
+cmd_negacrime = cmd_prefix + 'negacrime'
 cmd_endlesswar = cmd_prefix + 'endlesswar'
 cmd_swear_jar = cmd_prefix + 'swearjar'
 cmd_equip = cmd_prefix + 'equip'
@@ -1464,6 +1465,9 @@ cmd_fixship = cmd_prefix + 'repair'
 
 #weapon specific
 
+cmd_immolate= cmd_prefix + 'immolate'
+cmd_extinguish= cmd_prefix + 'extinguish'
+
 cmd_autohotkey= cmd_prefix + 'ahk'
 cmd_sheath = cmd_prefix + 'sheath'
 cmd_unsheath = cmd_prefix + 'unsheath'
@@ -1775,9 +1779,10 @@ cr_unlawful_stunting = 1
 
 
 crime_status = {
+-5000:"{they} have done more to fight crime than perhaps anyone else. Forget juvieman, forget Mr. C, there is a new sherrif in town.",
 -1000:"{they} are a one man police force.",
 -100:"{they} have contributed towards the peace and prosperity of this city.",
--20:"{they} have done their fair share of volunteer work at slimeoid shelters, nursing wounded slimeoids back to health.",
+-20:"{they} have done their fair share of volunteer work at slimeoid shelters. Nursing wounded slimeoids back to health and helping to reintroduce them into the wild.",
 -5:"{they} have helped more than a few grandmas cross the street. Some say {they} don't even snatch their purses.",
 -1:"{they} must be confused, you're supposed to commit gang violence not undo it.",
 0:"{their} record is spotless.",
@@ -4017,6 +4022,7 @@ status_modelovaccine_id = "modelovaccine"
 status_slapped_id = "slapped"
 status_foodcoma_id = "foodcoma"
 status_braced_id = "braced"
+status_dragonfire_id = "dragonfire"
 
 status_enemy_hostile_id = "hostile"
 status_enemy_barren_id = "barren"
@@ -5129,8 +5135,8 @@ enemy_data_table = {
         "aliases": ["giga"],
         "arcticvariant":"Glacial Gigaslime",
         "dhvariant": "Ghastly Gigaslime",
-        "description": "\n\n> {emote} A nightmarishly huge abomination made entirely of slime, and lots of it. How such a huge amount of slime ammased to begin with is anyones guess but it is likely a vestige of the ye olde slimecorp stock exchange.".format(emote=emote_megaslime),
-        "raredescription": "\n\n> {emote} A nightmarishly huge abomination made entirely of slime, and lots of it. How such a huge amount of slime ammased to begin with is anyones guess but it is likely a vestige of the ye olde slimecorp stock exchange.".format(emote=emote_megaslime),
+        "description": "\n\n> {emote} A nightmarishly huge abomination made entirely of slime, and lots of it. How such a huge amount of slime ammased to begin with is anyones guess.".format(emote=emote_megaslime),
+        "raredescription": "\n\n> {emote} A nightmarishly huge abomination made entirely of slime, and lots of it. How such a huge amount of slime ammased to begin with is anyones guess.".format(emote=emote_megaslime),
         # "arcticdescription": "\n\n> \n - *MT. SRXEK GUIDEBOOK*, Author Unknown",
     },
     enemy_type_slimeasaurusrex: {

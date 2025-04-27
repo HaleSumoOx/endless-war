@@ -217,7 +217,9 @@ cmd_map = {
     ewcfg.cmd_setslime: cmdcmds.set_slime,
     ewcfg.cmd_windowshop: cmdcmds.windowshop,
 
-    # Automining
+    # Boss weapon verbs
+    ewcfg.cmd_immolate: cmdcmds.immolate,
+    ewcfg.cmd_extinguish: cmdcmds.extinguish,
     ewcfg.cmd_autohotkey: cmdcmds.autohotkey,
 
 

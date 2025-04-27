@@ -33,12 +33,12 @@ import ew.utils.item as itm_utils
 
 async def undo_capture(enemy = None):
     id_server=int(enemy.id_server)
+    server =ewcfg.server_list[enemy.id_server]
     district = ewdistrict.EwDistrict(district=enemy.poi, id_server=id_server)
     district_name = poi_static.id_to_poi[enemy.poi].str_name
-    
-    if district.capture_points > 0 and random.randint(0, 15) == 0:
+    is_not_surrounded = not district.all_neighbors_friendly()
+    if district.capture_points > 0 and random.randint(0, 20) == 0 and is_not_surrounded:
         controlling_faction=district.controlling_faction
-        print (controlling_faction)
         response = "{enemy} is decapturing {district}".format(
                 enemy=enemy.display_name,
                 district=district_name)
@@ -47,7 +47,11 @@ async def undo_capture(enemy = None):
                 enemy=enemy.display_name,
                 district=district_name,
                 controllingfaction=controlling_faction)      
-        await fe_utils.post_in_hideouts(id_server,response)
+        for gangbase in ewcfg.hideout_channels:
+            channel = fe_utils.get_channel(server,gangbase)
+            await fe_utils.send_response(response, cmd= None, channel=channel, delete_after=32)
+        
+        await fe_utils.report_news(response=response,server=server)
         district.decay_capture_points()
         district.persist()
         #return False
@@ -377,8 +381,17 @@ async def police_die(channel, npc_obj, keyword_override = 'die', enemy = None):
     await fe_utils.send_message(None, channel, "{} is dead!".format(npc_obj.str_name))
     if response is not None:
         await fe_utils.talk_bubble(response=response, name=name, image=npc_obj.image_profile, channel=channel)
-
-
+    
+    #dispatch
+    district_name = poi_static.id_to_poi[enemy.poi].str_name
+    response = "A patrol car has been dispatched to {district}".format(district=district_name)
+    server =ewcfg.server_list[enemy.id_server]
+    for gangbase in ewcfg.hideout_channels:
+        channel = fe_utils.get_channel(server,gangbase)
+        await fe_utils.send_response(response, cmd= None, channel=channel, delete_after=32)
+    
+    await fe_utils.report_news(response=response,server=server)
+    
     timewait = random.randint(15, 45)
     await asyncio.sleep(timewait)
 

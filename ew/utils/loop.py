@@ -486,6 +486,7 @@ async def burn_tick_loop(id_server):
         ewutils.last_loop['burn'] = int(time.time())
         await burnSlimes(id_server=id_server)
         await enemyBurnSlimes(id_server=id_server)
+        await immolation_burn(id_server=id_server)
         await asyncio.sleep(interval)
 
 
@@ -675,6 +676,28 @@ async def enemyBurnSlimes(id_server):
 
         await resp_cont.post()
 
+async def immolation_burn(id_server):
+    time_now = int(time.time())
+    client = ewutils.get_client()
+    server = client.get_guild(id_server)
+    status_origin = 'user'
+
+    results = {}
+
+    # Get users with harmful status effects
+    data = bknd_core.execute_sql_query("SELECT {id_user}, {id_status}, {time_expire} from status_effects WHERE {id_status} IN %s and {id_server} = %s".format(
+        id_user=ewcfg.col_id_user,
+        id_status=ewcfg.col_id_status,
+        id_server=ewcfg.col_id_server,
+        time_expire = ewcfg.col_time_expir,
+    ), (
+        tuple(ewcfg.harmful_status_effects),
+        id_server
+    ))
+
+    resp_cont = EwResponseContainer(id_server=id_server)
+    for users in data:
+        print("burning")
 
 async def remove_status_loop(id_server):
     interval = ewcfg.removestatus_tick_length

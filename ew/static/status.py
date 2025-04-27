@@ -337,6 +337,13 @@ EwStatusEffectDef(
         str_describe="They're bracing for impact and can't do any damage.",
         str_describe_self="You're bracing for impact and can't do any damage."# i know there are damage mods but they're not 100% multiplicative so this doesn't work sadly
     ),
+EwStatusEffectDef(
+    id_status=ewcfg.status_dragonfire_id,
+    time_expire=30,
+    str_acquire='{name_player}\'s body is engulfed in bright red flames.',
+    str_describe='They are burning.',
+    str_describe_self='You are burning.'
+),
 ]
 
 status_effects_def_map = {}

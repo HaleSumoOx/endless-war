@@ -209,6 +209,11 @@ async def attack(cmd):
         if to_district > 0 and (ewcfg.mutation_id_slurpsup in attacker_mutations or ewcfg.mutation_id_airlock in attacker_mutations) and market_data.weather == ewcfg.weather_rainy:
             to_attacker += to_district * 0.5
             to_district *= 0.5
+        
+        # Harvester Scythe takes 30%
+        if to_district > 0 and attacker.weapon == 52:
+            to_attacker += to_district * 0.3
+            to_district *= 0.3
                 
         # Have backfire effect considered with slime gained from the kill already theirs
         attacker_killed = ctn.backfire_damage > attacker.slimes + to_attacker - attacker.bleed_storage

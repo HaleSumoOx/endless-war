@@ -2155,7 +2155,6 @@ async def cmd_moan(cmd):
 
 async def autohotkey(cmd):
     user_data = EwUser(member=cmd.message.author)
-    print(user_data.weapon)
     if user_data.weapon == 52:
         
         if user_data.id_user in loop.autohotkey.keys():
@@ -2171,12 +2170,11 @@ async def autohotkey(cmd):
 
 async def unsheath(cmd):
     user_data = EwUser(member=cmd.message.author)
-    print (user_data.weapon)
     if user_data.weapon == 64:
         response = 'You unsheath your katana. Your enemies better watch out!'
         
     else:
-        response = "You unsheath something."
+        response = "You don't have anything to unsheath."
     await fe_utils.send_response(response, cmd)
 
 async def sheath(cmd):
@@ -2185,10 +2183,49 @@ async def sheath(cmd):
         response = 'You sheath your katana. Heh, looks like your enemies got lucky.'
         
     else:
-        response = "You sheath something."
+        response = "You don't have anything to sheath"
     await fe_utils.send_response(response, cmd)
 
+async def immolate(cmd):
+    user_data = EwUser(member=cmd.message.author)
+    print(user_data.weapon)
+    if user_data.weapon == 348:
+        user_data.applyStatus(ewcfg.status_dragonfire_id)
+        user_data.clear_status(ewcfg.status_repelled_id)
+        response = "You explode into a blazing inferno."
+    else:
+        
+        response = "You try your darndest to set yourself on fire but all you manage is a puff of smoke."
 
+    return await fe_utils.send_message(cmd.client, cmd.message.channel, fe_utils.formatMessage(cmd.message.author, response))
+
+async def extinguish(cmd):
+    user_data = EwUser(member=cmd.message.author)
+    response = ""
+    statuses = user_data.getStatusEffects()
+    if ewcfg.status_dragonfire_id in statuses:
+        response = "You rip off the nearest fire extinguisher and start desperately spraying yourself down."
+        user_data.clear_status(ewcfg.status_dragonfire_id)
+    elif ewcfg.status_burning_id in statuses:       
+        response = "You look around for something to put yourself out with but find nothing. Womp womp!"
+        #This is stupid
+        if ewcfg.mutation_id_enlargedbladder in mutations:
+            inebriation=user_data.inebriation
+            if inebriation >=15:
+                response = "You spray a stream of the golden liquid onto yourself but the alcohol content of your piss simply makes the flames worse!!"
+                user_data.applyStatus(ewcfg.status_burning_id)
+            else:
+                response = "You spray a stream of the golden liquid onto yourself but it spurts and splatters, the fires abate slightly but come back in full force not a moment later."
+                savingthrow=random.randint(1,20)
+                if ewcfg.mutation_id_lucky in mutations:
+                    savingthrow = max(random.randint(1,20),random.randint(1,20)) 
+                if savingthrow>=17:
+                    response = "You spray a steady unfaltering stream of the golden liquid onto yourself and watch as the fires are miraculously quenched."
+                    user_data.clear_status(ewcfg.status_burning_id)
+                
+    else:
+        response = "There is nothing you can extinguish moron."
+    return await fe_utils.send_message(cmd.client, cmd.message.channel, fe_utils.formatMessage(cmd.message.author, response))
 
 """
     Harvest is not and has never been a command.

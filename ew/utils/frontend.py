@@ -800,3 +800,12 @@ async def prompt(cmd = None, target = None, question = "", wait_time = 30, accep
         accepted = False
 
     return accepted
+
+async def report_news(response="", server = None, delete_after=60):
+    name = "Slime Myers, Reporter"
+    image = "https://file.garden/Zqi4XgvJG2OU4NGu/RFCK/slimestinpowers.png"
+    channel = get_channel(server,"endless-updates")
+    quips = ["This just in ", "You know it baby ", "Shagadelic, Baby! ", "In other news ", "Today "]
+    quip = random.choice(quips)
+    response = quip + response+"!"
+    await talk_bubble(response=response, name = name, channel=channel, image=image,delete_after=delete_after)

@@ -395,6 +395,7 @@ smelting_recipe_list = [
             ewcfg.item_id_slimepoudrin: 5,
             ewcfg.item_id_ironingot: 1,
             ewcfg.item_id_leather: 1,
+            ewcfg.item_id_monsterbones: 10
         },
         products=[ewcfg.weapon_id_dclaw]
     ),

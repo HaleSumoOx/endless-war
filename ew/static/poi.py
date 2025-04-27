@@ -3196,7 +3196,7 @@ poi_list = [
         id_poi="wailingwoods",
         alias=['wailingwoods'],
         str_name="Wailing Woods",
-        str_desc="Wailing Woods Description",
+        str_desc="""You stand in the Whaling Woods, an indomitable forest of baroque masonry and gothic cathederals. The sky is almost entirely blotted out by clocktowers and even in the day the shadows cast the place into eternal night.""",
         channel="wailing-woods",
         role="wailing-woods",
         permissions={'wailing-woods': ['read', 'send', 'connect']},
@@ -3388,7 +3388,7 @@ What structures do exist here are delapitated and disinhabited, serving only as 
         str_name="The Lighthouse of Absolution",
         str_desc="""A ceaselessly shining beacon of light, cutting effortlessly through the green haze as its lamp circumnavigates the swivel on which it sits, leading ships and sinners alike towards dry land.
 
-Inside its dank interior is where the Cult of Absolution operate, at its center is The Confessor, a large turtitular slime beast filling out paperwork and administering absolution and no one seems to mind much that he is in fact, a giant turtle. The Cult keeps to themselves enough that the officials of the island, scarce as they are, basically leave them alone. To be fair what are they going to do? Evict the giant turtle that weighs more than a used ford ranger.
+Inside its dank interior is where the Cult of Absolution operate, at its center is The Confessor, a large turtitular slime beast filling out paperwork and administering absolution and no one seems to mind much that he is in fact, a giant turtle. The Cult keeps to themselves enough that the officials of the island, scarce as they are, basically leave them alone. To be fair what are they going to do? Evict the giant turtle that weighs more than a used ford ranger?
 
 The Lighthouse of Absolution offers exactly one service, absolution, and it comes at a price.
 """,

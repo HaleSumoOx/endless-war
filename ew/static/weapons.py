@@ -1044,7 +1044,11 @@ weapon_list = [
         str_duel="**SLICE!! SWIPE!! SLASH!!** {name_player} and {name_target} cut the fuck out of eachother, a fire extinguisher is never more than a meter away.",
         str_scalp="The scalp is burning and doesn't look like it's gonna stop.",
         fn_effect=get_normal_attack(weapon_type='incendiary'),
-        str_description="It's the core of a Dragon Claw, it will morph around whatever hand it is held by granting them the power of the elusive GREEN EYES SLIME DRAGON. If you listen closely you can hear whines of the dragon soul as it remains perpetually trapped in the weapon.",
+        str_description="""It's the core of a Dragon Claw, it will morph around whatever hand it is held by granting them the power of the elusive GREEN EYES SLIME DRAGON. If you listen closely you can hear whines of the dragon soul as it remains perpetually trapped in the weapon.
+
+__**Unique Trait:「Dragonfire」**__
+Use the !immolate verb to gain the dragonfire status, rapidly burning away slime in exchange for damage and evasion and the !extinguish verb to return to normal         
+""",
         acquisition=ewcfg.acquisition_smelting,
         stat=ewcfg.stat_dclaw_kills,
         classes=[ewcfg.weapon_class_burning, ewcfg.weapon_class_captcha],
@@ -2019,12 +2023,16 @@ weapon_list = [
         str_killdescriptor="smelling mad musty",
         str_damage="Bullets rake over {name_target}'s {hitzone}!!",
         str_duel="**RAT-TAT-TAT-TAT-TAT!!** {name_player} and {name_target} practice shooting at distant targets with quick, controlled bursts.",
-        str_description="A traditional FN Scar plated with gold. Pried from the cold dead hands of a legendary warrior. Sports a higher clip size and better firepower compared to a regular assault rifle.",
+        # TODO:
+        str_description="""A traditional FN Scar plated with gold. Pried from the cold dead hands of a legendary warrior. Sports a higher clip size and better firepower compared to a regular assault rifle.
+
+__**Unique Trait: 「Build Mode」**__
+Holding the golden scar unlocks the !build verb. !build-ing allows to you to build a defensive structure that blocks both incoming and outgoing attacks once (per !build) the !build verb consumes ammo.""",
         str_reload="You hastily rip the spent magazine out of your assault rifle, before slamming a fresh one back into it.",
         str_reload_warning="**RAT-TAT-TAT--** *ttrrr...* **SHIT!!** {name_player}’s rifle just chewed up the last of its magazine; it’s out of bullets!!",
         str_scalp=" It has a shit-load of holes in it.",
-        fn_effect=get_normal_attack(cost_multiplier=0.7, damage_multiplier=0.5, weapon_type='burst_fire'),
-        clip_size=30,
+        fn_effect=get_normal_attack(damage_multiplier=0.5, weapon_type='burst_fire'),
+        clip_size=15,
         classes=[ewcfg.weapon_class_ammo],
         stat=ewcfg.stat_rifle_kills,
         str_brandish=["{name} equips {weapon}. It gleans in the sun."]
@@ -2066,20 +2074,23 @@ weapon_list = [
         ],
         str_crit="**Critical hit!!** By sheer dumb luck, {name_player} manages to get a good hit off on {name_target}’s {hitzone}.",
         str_miss="**MISS!!** {name_player} is too weak to lift their pickaxe!",
-        str_equip="You equip the pickaxe.",
-        str_name="pickaxe",
-        str_weapon="a pickaxe",
-        str_weaponmaster_self="You are a rank {rank} {title} coward of the pickaxe.",
-        str_weaponmaster="They are a rank {rank} {title} coward of the pickaxe.",
+        str_equip="You equip the auto hot key.",
+        str_name="auto hot key",
+        str_weapon="a auto hot key",
+        str_weaponmaster_self="You are a rank {rank} {title} coward of the auto hot key.",
+        str_weaponmaster="They are a rank {rank} {title} coward of the auto hot key.",
         # str_trauma_self = "There is a deep, precise indent in the crown of your skull. How embarrassing!",
         # str_trauma = "There is a deep, precise indent in the crown of their skull. How embarrassing!",
         str_kill=comm_cfg.pickaxekilltext,
-        str_killdescriptor="!mined",
+        str_killdescriptor="botted",
         str_damage="{name_target} is lightly tapped on the {hitzone}!!",
         str_duel="**THWACK, THWACK** {name_player} and {name_target} spend some quality time together, catching up and discussing movies they recently watched or food they recently ate.",
         str_scalp=" It reeks of dirt and poudrins. How embarrassing!",
         fn_effect=get_normal_attack(weapon_type='tool'),
-        str_description="A highly advanced AI powered pickaxe forged from the most advanced slimecorp technology. Even staring at it you can just feel your arm start to move on its own",
+        str_description="""A highly advanced AI powered pickaxe forged from the most advanced slimecorp technology. Even staring at it you can just feel your arm start to move on its own
+
+__**Unique Trait: 「Botting」**__ 
+Holding the auto hot key unlocks the !ahk verb. Using !ahk will activate the auto hot key, automatically mining and scavenging in applicable areas.""",
         acquisition=ewcfg.acquisition_smelting,
         stat=ewcfg.stat_pickaxe_kills,
         classes = [ewcfg.weapon_class_juvie],
@@ -2129,12 +2140,15 @@ weapon_list = [
         str_killdescriptor="bisected",
         str_damage="{name_target} is slashed across the {hitzone}!!",
         str_duel="**CRACK!! THWACK!! CRACK!!** {name_player} and {name_target} duel with bamboo swords, viciously striking at head, wrist and belly.",
-        str_description="It's a beamsaber.",
+        str_description="""It's a beamsaber.
+
+__**Unique Trait: 「Dedicated RAM」**__ 
+You only have to enter the captcha for the beamsaber once. The beamsaber clears its RAM after 10 seconds, requiring a new captcha to be entered.""",
         str_scalp=" It seems to have been removed with some precision.",
         fn_effect=get_normal_attack(weapon_type='precision'),
         stat=ewcfg.stat_katana_kills,
-        classes=[ewcfg.weapon_class_burning],
-        str_brandish=["{name} switches on the {weapon}. *Shiiing* it glows brightly."]
+        str_brandish=["{name} switches on the {weapon}. *Shiiing* it glows brightly."],
+        captcha_length=4
     ),
     EwWeapon( # 59
         id_weapon= "harvestscythe",
@@ -2156,42 +2170,18 @@ weapon_list = [
         str_killdescriptor="returned to the styx",
         str_damage="{name_target} is cleaved through the {hitzone}!!",
         str_duel="**WHOOSH, WHOOSH** {name_player} and {name_target} swing their blades in wide arcs, dodging one another's deadly slashes.",
-        str_description="A scythe, twice... nay thrice as large as a regular scythe. Unlike the regular farming implement it's based on this scythe has an unmistakeable aura of death and decay and pulses with PURE nega energy.",
+        str_description="""A dark twisted scythe, twice... nay thrice as large as a regular scythe. Unlike the regular farming implement it's based on this scythe has an unmistakeable aura of death and decay. It pulses with PURE nega energy."
+
+__**Unique Trait:「Harvest」**__
+Harvest an additional 30% of slime on kill. Stacks with Noseferatu, Slurps up and Airlock.
+""",
         str_scalp=" It's cut in two pieces.",
         fn_effect=get_normal_attack(weapon_type='heavy'),
         vendors=[ewcfg.weapon_class_farming],
         stat=ewcfg.stat_scythe_kills,
         str_brandish=["{name} takes a couple swings with {weapon}. Bell tolls for thee, motherfucker."]
     ),
-EwWeapon(  # Ultragreatsword
-        id_weapon="ugs",
-        alias=[
-            "ultragreatsword",
-        ],
-        str_crit="**Critical hit!!** {name_target}'s totally hooked!!",
-        str_miss="**You missed!!** {name_player} misses {name_target}! FUCK!!",
-        str_equip="You equip the harpoon gun.",
-        str_name="harpoon gun",
-        str_weapon="a harpoon gun",
-        str_weaponmaster_self="You are a rank {rank} salty {title} of the harpoon gun.",
-        str_weaponmaster="They are a rank {rank} salty {title} of the harpoon gun.",
-        str_kill=["**YARRR!!** {name_player} fires a harpoon right into {name_target}! {name_target} is dragged up on deck, vanquished. {emote_skull}"],
-        str_killdescriptor="harpooned",
-        str_damage="{name_player} harpoons {name_target}’s {hitzone}!!",
-        str_duel="**...** {name_player} and {name_target} dock their vessels next to one another, locked in a stern gaze. Suddenly, harpoons erupt from either vessel, smashing through timber and flesh alike.",
-        str_description="It's a harpoon gun, seemingly ripped right from the deck of a whaling vessel. You're going to need both hands free to wield this thing properly, that means no sidearms, you shmuck!",
-        str_reload="...aaaaand reloaded! The harpoon is ready to fire again!",
-        str_reload_warning="{name_player}’s is too exhausted to swing again!!",
-        str_scalp="The scalp is drenched in a salty brine.",
-        fn_effect=wef_harpoon,
-        classes=[ewcfg.weapon_class_ammo],
-        stat=ewcfg.stat_harpoon_kills,
-        price=1000000000,
-        vendors = ["Oppenheimer and Sons"],
-        # YOU EITHER KILL 'EM OR YOU DON'T, BROTHERRRR
-        clip_size=1,
-        str_brandish=["{name} takes out {weapon} and racks their brain for a quote from Moby Dick. They can't think of a quote from Moby Dick."]
-    ),
+
 
 ]
 

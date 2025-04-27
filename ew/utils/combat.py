@@ -117,7 +117,7 @@ class EwEnemy(EwEnemyBase):
                 ewcfg.emote_megaslime
             )
             resp_cont.add_channel_response(ch_name, response)
-
+            
             enemy_data.life_state = ewcfg.enemy_lifestate_alive
             enemy_data.time_lastenter = time_now
             enemy_data.persist()
@@ -658,6 +658,9 @@ class EwEnemy(EwEnemyBase):
                     channels = ewcfg.hideout_channels
                     for ch in channels:
                         resp_cont.add_channel_response(ch, gang_base_response)
+                    server =ewcfg.server_list[self.id_server]
+                    task = asyncio.create_task(fe_utils.report_news(response=gang_base_response,server=server))
+                    asyncio.run(task)
                 # if new_poi not in poi_static.outskirts and self.enemytype in ewcfg.raid_bosses:
                 #     gang_base_response = "There are reports of a powerful enemy roaming around {}.".format(
                 #         new_poi_def.str_name)
@@ -1888,12 +1891,15 @@ class EwUser(EwUserBase):
         else:
             # Only handle mutations for those previously alive
             mutations = self.get_mutations()
+            statuses= self.getStatusEffects()
 
             # Spontaneous Combustion
             if (cause not in ewcfg.explosion_block_list) and poi.pvp:
                 if ewcfg.mutation_id_spontaneouscombustion in mutations:
                     user_has_combustion = True
                     explode_damage = ewutils.slime_bylevel(self.slimelevel) / 5
+                    if ewcfg.status_dragonfire_id in statuses:
+                        explode_damage = ewutils.slime_bylevel(self.slimelevel) / 4
                     explode_district = EwDistrict(district=self.poi, id_server=self.id_server)
                     explode_poi_name = poi.id_poi
                     explode_poi_channel = poi.channel #poi_static.id_to_poi.get(self.poi).channel
